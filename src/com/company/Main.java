@@ -3,6 +3,7 @@ package com.company;
 import sun.util.resources.cldr.aa.CalendarData_aa_DJ;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,9 +14,8 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 public class Main extends JPanel {
@@ -241,26 +241,28 @@ public class Main extends JPanel {
                 JPanel panel = new JPanel();
                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                 panel.setOpaque(true);
-                /*
-                JTextArea textArea = new JTextArea(15, 50);
-                textArea.setWrapStyleWord(true);
-                textArea.setEditable(false);
-                textArea.setFont(Font.getFont(Font.SANS_SERIF));
 
-                JScrollPane scroller = new JScrollPane(textArea);
 
+
+                JTextArea listOfDates = new JTextArea(15, 50);
+                listOfDates.setWrapStyleWord(true);
+                listOfDates.setEditable(false);
+                listOfDates.setBorder(BorderFactory.createTitledBorder("List Of Dates Available"));
+                listOfDates.setFont(Font.getFont(Font.SANS_SERIF));
+                JScrollPane scroller = new JScrollPane(listOfDates);
                 scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
                 scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                */
+
+
                 JPanel inputpanel = new JPanel();
                 inputpanel.setLayout(new FlowLayout());
                 JTextField input = new JTextField(20);
-                JButton button = new JButton("Enter");
-
+                JButton insertButton = new JButton("Insert");
+                JButton browseButton = new JButton("Browse");
                 JComboBox cb = new JComboBox();
 
                 String str_date ="05/02/2016";
-                String end_date ="02/09/2016";
+                String end_date ="02/06/2016";
                 Date startDate = null;
                 Date endDate = null;
 
@@ -268,11 +270,13 @@ public class Main extends JPanel {
 
                 formatter = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                     startDate = (Date) formatter.parse(str_date);
-                     endDate = (Date) formatter.parse(end_date);
+                    startDate = (Date) formatter.parse(str_date);
+                    endDate = (Date) formatter.parse(end_date);
                 }catch(Exception e) {
 
                 }
+
+
 
                 Date mdate = null;
                 FixtureDate dt = new FixtureDate(mdate);
@@ -284,10 +288,11 @@ public class Main extends JPanel {
                 //DefaultCaret caret = (DefaultCaret) textArea.getCaret();
                 //caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-                //panel.add(scroller);
+                panel.add(scroller);
                 panel.add(cb);
                 inputpanel.add(input);
-                inputpanel.add(button);
+                inputpanel.add(insertButton);
+                inputpanel.add(browseButton);
                 panel.add(inputpanel);
                 frame.getContentPane().add(BorderLayout.CENTER, panel);
                 frame.pack();

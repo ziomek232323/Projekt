@@ -27,9 +27,12 @@ public class FixtureDate {
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
 
+
         while (calendar.getTime().before(endDate))
         {
             Date result = calendar.getTime();
+
+
             dates.add(result);
             calendar.add(Calendar.DATE, 1);
 
