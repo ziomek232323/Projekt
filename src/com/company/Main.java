@@ -13,7 +13,7 @@ public class Main extends JPanel {
     private JFrame mainFrame;
 
     private JLabel statusLabel;
-    private JPanel displayTeamListPanel;
+    public JPanel displayTeamListPanel;
     private JTextArea editTeamList;
     private JTextArea teamList;
     private JButton schedule;
@@ -36,7 +36,7 @@ public class Main extends JPanel {
 
     private void prepareGUI() {
         mainFrame = new JFrame("Sports Scheduler");
-        mainFrame.setSize(800, 800);
+        mainFrame.setSize(800, 600);
         mainFrame.setResizable(false);
 
         mainFrame.addWindowListener(new WindowAdapter() {
@@ -72,6 +72,9 @@ public class Main extends JPanel {
 
 
 
+
+
+
 /****************************- Set up of the GUI -***********************************************/
 
         mainFrame.add(displayTeamListPanel);
@@ -91,7 +94,7 @@ public class Main extends JPanel {
         //schedule.setBounds(400,435, 140, 20);
         //insert.setBounds(180, 435, 80, 19);
         //showFileDialogButton.setBounds(70, 435, 140, 20);
-        //tESINGS
+
 
 
 
@@ -180,9 +183,7 @@ public class Main extends JPanel {
 
         while ((line = br.readLine()) != null) {
 
-            teamList.append("\n" + line);
-
-
+           teamList.append("\n" + line);
 
 
         }
