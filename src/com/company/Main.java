@@ -19,6 +19,8 @@ public class Main extends JPanel {
     private JButton schedule;
     private JButton insert;
     private JButton showFileDialogButton;
+    private JButton delete;
+
 
     private String filePath = "";
     private JTextArea displayFixtureArea;
@@ -40,7 +42,9 @@ public class Main extends JPanel {
         mainFrame.setResizable(false);
 
         mainFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent)
+            {
+
                 System.exit(0);
             }
         });
@@ -48,12 +52,8 @@ public class Main extends JPanel {
 
 
         statusLabel = new JLabel("");
-
-
         displayTeamListPanel = new JPanel();
         displayTeamListPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-
 
         teamList = new JTextArea(25,25);
         JScrollPane scrollPane = new JScrollPane(teamList);
@@ -84,29 +84,22 @@ public class Main extends JPanel {
         editTeamList.setPreferredSize(new Dimension(20,20));
         displayTeamListPanel.revalidate();
         mainFrame.setVisible(true);
-        schedule = new JButton("Schedule");
-        displayTeamListPanel.add(schedule);
         insert = new JButton("Insert");
         displayTeamListPanel.add(insert);
+        schedule = new JButton("Schedule");
+        displayTeamListPanel.add(schedule);
         showFileDialogButton = new JButton("Browse For List");
         displayTeamListPanel.add(showFileDialogButton);
 
-        //schedule.setBounds(400,435, 140, 20);
-        //insert.setBounds(180, 435, 80, 19);
-        //showFileDialogButton.setBounds(70, 435, 140, 20);
-
-
-
-
-
-
-
     }
-    public String getEditTeamList (){
+
+    public String getEditTeamList ()
+    {
         return editTeamList.getText();
     }
 
-    public void rePaintTextArea() throws IOException {
+    public void rePaintTextArea() throws IOException
+    {
         editTeamList.setText(null);
         teamList.setText(null);
         displayList();
@@ -138,25 +131,24 @@ public class Main extends JPanel {
         });
 
 
-
         schedule.addActionListener(new ActionListener() {
 
-             @Override
-             public void actionPerformed (ActionEvent z) {
+            @Override
+            public void actionPerformed(ActionEvent z) {
 
 
-             try {
-             DisplaySchedule();
-             } catch (IOException e) {
+                try {
+                    DisplaySchedule();
+                } catch (IOException e) {
 
-             }
-              }
-            });
+                }
+            }
+        });
 
         insert.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed (ActionEvent z) {
+            public void actionPerformed(ActionEvent z) {
 
 
                 try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("./src/testing.txt", true)))) {
@@ -164,14 +156,17 @@ public class Main extends JPanel {
                     out.close();
 
                 } catch (IOException za) {
-                    //exception handling left as an exercise for the reader
+                    System.out.print(za);
                 }
                 try {
                     rePaintTextArea();
                 } catch (IOException za) {
                 }
             }
-        });}
+        });
+
+
+    }
 
 
 
@@ -193,30 +188,26 @@ public class Main extends JPanel {
 
     public void DisplaySchedule()throws  IOException {
         String[][] lists;
+        String line;
+        int count = 0;
+        int numberOfTeams = count;
+        int totalNumberOfRounds = numberOfTeams - 1;
+        int numberOfMatchesPerRound = numberOfTeams / 2;
+
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture();
         lists = fg.getFixture();
 
 
-
-
-
-
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-        String line;
-        int count = 0;
+
+
 
         while ((line = br.readLine()) != null) {
             count++;
         }
         br.close();
 
-
-
-
-        int numberOfTeams = count;
-        int totalNumberOfRounds = numberOfTeams - 1;
-        int numberOfMatchesPerRound = numberOfTeams / 2;
 
         for (int roundNumber = 0; roundNumber < totalNumberOfRounds; roundNumber++) {
             displayFixtureArea.append("Round " + (roundNumber + 1) + "\t\t");
