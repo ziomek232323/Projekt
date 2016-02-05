@@ -7,24 +7,10 @@ import java.util.List;
 
 public class FixtureGenerating {
     private String[][] fixtures;
-    private String[][] revisedFixtures;
-    private String[] elementsOfFixture;
-    private String fixtureAsText;
 
     public void GenerateFixture() throws IOException{
         int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
         int homeTeamNumber, awayTeamNumber, even, odd, roundNumber, matchNumber;
-
-        /*
-        String[][] fixtures;
-        String[][] revisedFixtures;
-        String[] elementsOfFixture;
-        String fixtureAsText;
-        */
-
-
-        //Checking how many teams are in the file.
-        //PrintWriter out = (new PrintWriter(new BufferedWriter(new FileWriter("./src/table.txt"))));
 
         BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
         String line;
@@ -38,16 +24,7 @@ public class FixtureGenerating {
             count++;
         }
         br.close();
-        //System.out.println("Number of Teams: " + count);
 
-
-
-
-
-        //Display team list
-       // for (int index = 0; index < count; index++) {
-        //    System.out.println(temps.get(index));
-       // }
 
 
 
@@ -71,10 +48,7 @@ public class FixtureGenerating {
 
 
                 //names from file instead of numbers
-
                 for (int index = 0; index < count; index++) {
-                    //System.out.println(temps.get(index));
-
 
                     fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
 
@@ -84,45 +58,6 @@ public class FixtureGenerating {
             }
         }
 
-        revisedFixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
-        even = 0;
-        odd = numberOfTeams / 2;
-        for (int i = 0; i < fixtures.length; i++) {
-            if (i % 2 == 0)
-                revisedFixtures[i] = fixtures[even++];
-            else
-                revisedFixtures[i] = fixtures[odd++];
-        }
-        fixtures = revisedFixtures;
-
-        for (roundNumber = 0; roundNumber < fixtures.length; roundNumber++) {
-            if (roundNumber % 2 == 1) {
-                fixtureAsText = fixtures[roundNumber][0];
-                elementsOfFixture = fixtureAsText.split(" v ");
-                fixtures[roundNumber][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
-            }
-        }
-
-        for (roundNumber = 0; roundNumber < totalNumberOfRounds; roundNumber++) {
-
-            // PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("./src/main/java/table.txt", true)));
-
-
-           // out.println("Round " + (roundNumber + 1) + "\t\t");
-            //System.out.println("Round " + (roundNumber + 1) + "\t\t");
-            for (matchNumber = 0; matchNumber < numberOfMatchesPerRound; matchNumber++) {
-
-               // out.println("\tMatch " + (matchNumber + 1) + ": "
-                   //     + fixtures[roundNumber][matchNumber] + "\t");
-               // System.out.println("\tMatch " + (matchNumber + 1) + ": "
-                  //      + fixtures[roundNumber][matchNumber] + "\t");
-               // System.out.println();
-               // out.println();
-
-            }
-
-        }
-        //out.close();
     }
 
     public String[][] getFixture(){

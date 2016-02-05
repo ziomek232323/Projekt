@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,11 +20,9 @@ public class Main extends JPanel {
     private JButton schedule;
     private JButton insert;
     private JButton showFileDialogButton;
-    private JButton delete;
-
-
     private String filePath = "";
     private JTextArea displayFixtureArea;
+    private JButton editDateButton;
 
 
     public Main() {
@@ -42,46 +41,35 @@ public class Main extends JPanel {
         mainFrame.setResizable(false);
 
         mainFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent windowEvent)
-            {
-
+            public void windowClosing(WindowEvent windowEvent) {
                 System.exit(0);
             }
         });
-
-
 
         statusLabel = new JLabel("");
         displayTeamListPanel = new JPanel();
         displayTeamListPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        teamList = new JTextArea(25,25);
+        teamList = new JTextArea(25, 25);
         JScrollPane scrollPane = new JScrollPane(teamList);
         teamList.setBorder(BorderFactory.createTitledBorder("Team List"));
         teamList.setEditable(false);
 
-        displayFixtureArea = new JTextArea(25,34);
+        displayFixtureArea = new JTextArea(25, 34);
         JScrollPane scrollPane11 = new JScrollPane(displayFixtureArea);
         displayFixtureArea.setBorder(BorderFactory.createTitledBorder("Fixtures"));
         displayFixtureArea.setEditable(false);
 
-        editTeamList = new JTextArea(1,25);
+        editTeamList = new JTextArea(1, 25);
         editTeamList.getInputMap().put(KeyStroke.getKeyStroke("ENTER"), "doNothing");
         editTeamList.setText("");
 
 
-
-
-
-
-
-/****************************- Set up of the GUI -***********************************************/
-
         mainFrame.add(displayTeamListPanel);
         displayTeamListPanel.add(scrollPane, BorderLayout.WEST);
         displayTeamListPanel.add(scrollPane11);
-        displayTeamListPanel.add(editTeamList,BorderLayout.SOUTH);
-        editTeamList.setPreferredSize(new Dimension(20,20));
+        displayTeamListPanel.add(editTeamList, BorderLayout.SOUTH);
+        editTeamList.setPreferredSize(new Dimension(20, 20));
         displayTeamListPanel.revalidate();
         mainFrame.setVisible(true);
         insert = new JButton("Insert");
@@ -90,16 +78,16 @@ public class Main extends JPanel {
         displayTeamListPanel.add(schedule);
         showFileDialogButton = new JButton("Browse For List");
         displayTeamListPanel.add(showFileDialogButton);
+        editDateButton = new JButton("Edit Date");
+        displayTeamListPanel.add(editDateButton);
 
     }
 
-    public String getEditTeamList ()
-    {
+    public String getEditTeamList() {
         return editTeamList.getText();
     }
 
-    public void rePaintTextArea() throws IOException
-    {
+    public void rePaintTextArea() throws IOException {
         editTeamList.setText(null);
         teamList.setText(null);
         displayList();
@@ -122,9 +110,8 @@ public class Main extends JPanel {
                     try {
                         displayList();
                     } catch (IOException e) {
+                        System.out.print(e);
                     }
-
-                } else {
 
                 }
             }
@@ -139,9 +126,21 @@ public class Main extends JPanel {
 
                 try {
                     DisplaySchedule();
+
                 } catch (IOException e) {
+                    System.out.print(e);
 
                 }
+            }
+        });
+
+        editDateButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent z) {
+
+                    createEditMenu();
+
             }
         });
 
@@ -161,13 +160,13 @@ public class Main extends JPanel {
                 try {
                     rePaintTextArea();
                 } catch (IOException za) {
+                    System.out.print(za);
                 }
             }
         });
 
 
     }
-
 
 
     public void displayList() throws IOException {
@@ -178,7 +177,7 @@ public class Main extends JPanel {
 
         while ((line = br.readLine()) != null) {
 
-           teamList.append("\n" + line);
+            teamList.append("\n" + line);
 
 
         }
@@ -186,37 +185,78 @@ public class Main extends JPanel {
 
     }
 
-    public void DisplaySchedule()throws  IOException {
-        String[][] lists;
-        String line;
+    public int getNumberOfTeamsInList() throws IOException {
         int count = 0;
-        int numberOfTeams = count;
-        int totalNumberOfRounds = numberOfTeams - 1;
-        int numberOfMatchesPerRound = numberOfTeams / 2;
+        String line;
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        while ((line = br.readLine()) != null) {
+            count++;
+        }
+        br.close();
+        return count;
+    }
+
+    public void DisplaySchedule() throws IOException {
+        String[][] lists;
+
 
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture();
         lists = fg.getFixture();
 
 
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
-
-
-
-        while ((line = br.readLine()) != null) {
-            count++;
-        }
-        br.close();
-
-
+        int numberOfTeams = getNumberOfTeamsInList();
+        int totalNumberOfRounds = numberOfTeams - 1;
+        int numberOfMatchesPerRound = numberOfTeams / 2;
         for (int roundNumber = 0; roundNumber < totalNumberOfRounds; roundNumber++) {
             displayFixtureArea.append("Round " + (roundNumber + 1) + "\t\t");
             displayFixtureArea.append("\n");
             for (int matchNumber = 0; matchNumber < numberOfMatchesPerRound; matchNumber++) {
                 displayFixtureArea.append("\tMatch " + (matchNumber + 1) + ": "
                         + lists[roundNumber][matchNumber] + "\t");
-                        displayFixtureArea.append("\n");
+                displayFixtureArea.append("\n");
             }
         }
+    }
+
+    public static void createEditMenu() {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new JFrame("Test");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                JPanel panel = new JPanel();
+                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                panel.setOpaque(true);
+                JTextArea textArea = new JTextArea(15, 50);
+                textArea.setWrapStyleWord(true);
+                textArea.setEditable(false);
+                textArea.setFont(Font.getFont(Font.SANS_SERIF));
+                JScrollPane scroller = new JScrollPane(textArea);
+                scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+                scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                JPanel inputpanel = new JPanel();
+                inputpanel.setLayout(new FlowLayout());
+                JTextField input = new JTextField(20);
+                JButton button = new JButton("Enter");
+                DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+                panel.add(scroller);
+                inputpanel.add(input);
+                inputpanel.add(button);
+                panel.add(inputpanel);
+                frame.getContentPane().add(BorderLayout.CENTER, panel);
+                frame.pack();
+                frame.setLocationByPlatform(true);
+                frame.setVisible(true);
+                frame.setResizable(false);
+                input.requestFocus();
+            }
+        });
     }
 }
