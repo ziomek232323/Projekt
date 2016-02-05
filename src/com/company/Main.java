@@ -1,5 +1,7 @@
 package com.company;
 
+import sun.util.resources.cldr.aa.CalendarData_aa_DJ;
+
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
@@ -8,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Main extends JPanel {
@@ -223,7 +231,7 @@ public class Main extends JPanel {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new JFrame("Test");
+                JFrame frame = new JFrame("Edit Dates");
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -233,20 +241,51 @@ public class Main extends JPanel {
                 JPanel panel = new JPanel();
                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                 panel.setOpaque(true);
+                /*
                 JTextArea textArea = new JTextArea(15, 50);
                 textArea.setWrapStyleWord(true);
                 textArea.setEditable(false);
                 textArea.setFont(Font.getFont(Font.SANS_SERIF));
+
                 JScrollPane scroller = new JScrollPane(textArea);
+
                 scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
                 scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                */
                 JPanel inputpanel = new JPanel();
                 inputpanel.setLayout(new FlowLayout());
                 JTextField input = new JTextField(20);
                 JButton button = new JButton("Enter");
-                DefaultCaret caret = (DefaultCaret) textArea.getCaret();
-                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-                panel.add(scroller);
+
+                JComboBox cb = new JComboBox();
+
+                String str_date ="05/02/2016";
+                String end_date ="02/09/2016";
+                Date startDate = null;
+                Date endDate = null;
+
+                DateFormat formatter ;
+
+                formatter = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                     startDate = (Date) formatter.parse(str_date);
+                     endDate = (Date) formatter.parse(end_date);
+                }catch(Exception e) {
+
+                }
+
+                Date mdate = null;
+                FixtureDate dt = new FixtureDate(mdate);
+               // dt.setDate(startDate,endDate);
+
+                cb.setModel(new DefaultComboBoxModel<>(dt.setDate(startDate,endDate).toArray()));
+
+
+                //DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+                //caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
+                //panel.add(scroller);
+                panel.add(cb);
                 inputpanel.add(input);
                 inputpanel.add(button);
                 panel.add(inputpanel);

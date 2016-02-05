@@ -3,17 +3,14 @@ package com.company;
 import javax.swing.*;
 import java.io.*;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
-public class Date {
+public class FixtureDate {
     private Date mDate;
 
-    public Date(Date date) {
-
+    public FixtureDate(Date date) {
         mDate = date;
 
     }
@@ -22,11 +19,41 @@ public class Date {
         return mDate;
     }
 
-    @Override
-    public String toString() {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy,MM,dd");
-        return dateFormat.format(mDate);
+    public List setDate(Date startDate, Date endDate){
+
+
+        List<Date> dates = new ArrayList<Date>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+
+        while (calendar.getTime().before(endDate))
+        {
+            Date result = calendar.getTime();
+            dates.add(result);
+            calendar.add(Calendar.DATE, 1);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //java.util.Date mDate = calendar.getTime();
+
+
+        return dates;
     }
 }
 
