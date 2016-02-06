@@ -1,10 +1,7 @@
 package com.company;
 
-import sun.util.resources.cldr.aa.CalendarData_aa_DJ;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,17 +9,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
 public class Main extends JPanel {
     private JFrame mainFrame;
-
     private JLabel statusLabel;
-    public JPanel displayTeamListPanel;
+    private JPanel displayTeamListPanel;
     private JTextArea editTeamList;
     private JTextArea teamList;
     private JButton schedule;
@@ -230,8 +224,8 @@ public class Main extends JPanel {
     }
 
     public static void createEditMenu() {
-        Date mdate = null;
-        FixtureDate dt = new FixtureDate(mdate);
+
+        FixtureDate dt = new FixtureDate();
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -245,8 +239,6 @@ public class Main extends JPanel {
                 JPanel panel = new JPanel();
                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                 panel.setOpaque(true);
-
-
 
                 JTextArea listOfDates = new JTextArea(15, 50);
                 listOfDates.setWrapStyleWord(true);
@@ -287,15 +279,6 @@ public class Main extends JPanel {
                 }
 
 
-                //DefaultCaret caret = (DefaultCaret) textArea.getCaret();
-                //caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
-
-
-
-
-
-
                 panel.add(scroller);
                 panel.add(cb);
                 inputpanel.add(input);
@@ -309,7 +292,6 @@ public class Main extends JPanel {
                 frame.setVisible(true);
                 frame.setResizable(false);
                 input.requestFocus();
-
 
 
                 browseButton.addActionListener(new ActionListener() {

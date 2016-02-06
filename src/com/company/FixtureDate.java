@@ -4,17 +4,6 @@ import java.io.*;
 import java.util.*;
 
 public class FixtureDate {
-    private Date mDate;
-
-    public FixtureDate(Date date) {
-        mDate = date;
-
-    }
-
-    public Date getDate() {
-        return mDate;
-    }
-
 
     public List setDate(Date startDate, Date endDate) throws IOException {
 
