@@ -54,8 +54,6 @@ public class FixtureDate {
 
             String line = date.getSelectedItem().toString();
             out.append(line + "\n");
-            //System.out.print(line);
-            //System.out.print("File path is: " + filePath);
             out.close();
             DisplayDatesInFrame(filePath,frame);
 

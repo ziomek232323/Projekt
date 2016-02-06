@@ -10,7 +10,7 @@ public class FixtureGenerating {
 
     public void GenerateFixture() throws IOException{
         int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
-        int homeTeamNumber, awayTeamNumber, even, odd, roundNumber, matchNumber;
+        int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
 
         BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
         String line;
