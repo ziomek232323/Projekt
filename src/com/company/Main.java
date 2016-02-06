@@ -105,12 +105,14 @@ public class Main extends JPanel {
 
 
         final JFileChooser fileDialog = new JFileChooser("C:");
+        JFrame chooseFileFrame = new JFrame();
         showFileDialogButton.addActionListener(new ActionListener() {
 
 
             @Override
             public void actionPerformed(ActionEvent r) {
-                int returnVal = fileDialog.showOpenDialog(mainFrame);
+
+                int returnVal = fileDialog.showOpenDialog(chooseFileFrame);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     java.io.File file = fileDialog.getSelectedFile();
                     statusLabel.setText(file.getPath());
@@ -228,6 +230,8 @@ public class Main extends JPanel {
     }
 
     public static void createEditMenu() {
+        Date mdate = null;
+        FixtureDate dt = new FixtureDate(mdate);
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -259,40 +263,45 @@ public class Main extends JPanel {
                 JTextField input = new JTextField(20);
                 JButton insertButton = new JButton("Insert");
                 JButton browseButton = new JButton("Browse");
+                JButton applyDates = new JButton("Apply");
+                final JFileChooser fileDialog1 = new JFileChooser("C:");
+
                 JComboBox cb = new JComboBox();
 
-                String str_date ="05/02/2016";
-                String end_date ="02/06/2016";
+                String str_date = StartDateSelection();
+                String end_date = EndDateSelection();
                 Date startDate = null;
                 Date endDate = null;
-
                 DateFormat formatter ;
-
                 formatter = new SimpleDateFormat("dd/MM/yyyy");
                 try {
-                    startDate = (Date) formatter.parse(str_date);
-                    endDate = (Date) formatter.parse(end_date);
+                    startDate = formatter.parse(str_date);
+                    endDate =  formatter.parse(end_date);
                 }catch(Exception e) {
 
                 }
-
-
-
-                Date mdate = null;
-                FixtureDate dt = new FixtureDate(mdate);
-               // dt.setDate(startDate,endDate);
-
-                cb.setModel(new DefaultComboBoxModel<>(dt.setDate(startDate,endDate).toArray()));
+                try {
+                    cb.setModel(new DefaultComboBoxModel<>(dt.setDate(startDate,endDate).toArray()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
                 //DefaultCaret caret = (DefaultCaret) textArea.getCaret();
                 //caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
+
+
+
+
+
 
                 panel.add(scroller);
                 panel.add(cb);
                 inputpanel.add(input);
                 inputpanel.add(insertButton);
                 inputpanel.add(browseButton);
+                inputpanel.add(applyDates);
                 panel.add(inputpanel);
                 frame.getContentPane().add(BorderLayout.CENTER, panel);
                 frame.pack();
@@ -300,6 +309,38 @@ public class Main extends JPanel {
                 frame.setVisible(true);
                 frame.setResizable(false);
                 input.requestFocus();
+
+
+
+                browseButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent r) {
+                        int returnVal = fileDialog1.showOpenDialog(frame);
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            java.io.File file1 = fileDialog1.getSelectedFile();
+                            String dateFilePath = file1.getAbsolutePath();
+                            try {
+                                dt.DisplayDatesInFrame(dateFilePath,listOfDates);
+                            } catch (IOException e) {
+
+                            }
+
+
+                        }
+                    }
+                });
+            }
+
+            public String StartDateSelection (){
+                String str_date = JOptionPane.showInputDialog("Enter start date in format (dd/MM/yyyy): ");
+
+                return str_date;
+
+            }
+            public String EndDateSelection(){
+                String end_date = JOptionPane.showInputDialog("Enter end date in format (dd/MM/yyyy): ");
+
+                return end_date;
             }
         });
     }

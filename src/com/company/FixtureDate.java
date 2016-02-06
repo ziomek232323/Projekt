@@ -1,10 +1,6 @@
 package com.company;
-
 import javax.swing.*;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FixtureDate {
@@ -20,7 +16,7 @@ public class FixtureDate {
     }
 
 
-    public List setDate(Date startDate, Date endDate){
+    public List setDate(Date startDate, Date endDate) throws IOException {
 
 
         List<Date> dates = new ArrayList<Date>();
@@ -28,8 +24,7 @@ public class FixtureDate {
         calendar.setTime(startDate);
 
 
-        while (calendar.getTime().before(endDate))
-        {
+        while (calendar.getTime().before(endDate)) {
             Date result = calendar.getTime();
 
 
@@ -38,30 +33,31 @@ public class FixtureDate {
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //java.util.Date mDate = calendar.getTime();
-
-
         return dates;
     }
+
+    public void DisplayDatesInFrame(String filePath, JTextArea frame) throws IOException {
+
+
+        String line;
+        ArrayList <String> list = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        while ((line = br.readLine()) != null) {
+
+            list.add(line);
+        }
+
+        for(int i = 0; i < list.size(); i ++){
+            frame.append(list.get(i) + "\n");
+        }
+        br.close();
+    }
+
+
+
+
+
 }
-
-
-
 
 
 
