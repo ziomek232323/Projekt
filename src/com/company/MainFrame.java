@@ -25,25 +25,26 @@ public class MainFrame {
 
     public void prepareGUI() {
         mainFrame = new JFrame("Sports Scheduler");
-        mainFrame.setSize(800, 600);
+        mainFrame.setSize(900, 600);
         mainFrame.setResizable(false);
 
-        mainFrame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent windowEvent) {
-                System.exit(0);
-            }
-        });
+        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         statusLabel = new JLabel("");
         displayTeamListPanel = new JPanel();
         displayTeamListPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        teamList = new JTextArea(25, 25);
+        teamList = new JTextArea(25, 35);
         JScrollPane scrollPane = new JScrollPane(teamList);
         teamList.setBorder(BorderFactory.createTitledBorder("Team List"));
         teamList.setEditable(false);
 
-        displayFixtureArea = new JTextArea(25, 34);
+        displayFixtureArea = new JTextArea(25, 65);
         JScrollPane scrollPane11 = new JScrollPane(displayFixtureArea);
         displayFixtureArea.setBorder(BorderFactory.createTitledBorder("Fixtures"));
         displayFixtureArea.setEditable(false);
@@ -56,7 +57,7 @@ public class MainFrame {
         mainFrame.add(displayTeamListPanel);
         displayTeamListPanel.add(scrollPane, BorderLayout.WEST);
         displayTeamListPanel.add(scrollPane11);
-        displayTeamListPanel.add(editTeamList, BorderLayout.SOUTH);
+        displayTeamListPanel.add(editTeamList);
         editTeamList.setPreferredSize(new Dimension(20, 20));
         displayTeamListPanel.revalidate();
         mainFrame.setVisible(true);

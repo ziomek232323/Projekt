@@ -10,7 +10,7 @@ import java.util.*;
 
 
 public class DateEditFrame {
-    public static void createEditMenu() {
+    public void createEditMenu() {
 
         FixtureDate dt = new FixtureDate();
         EventQueue.invokeLater(new Runnable() {
@@ -23,6 +23,10 @@ public class DateEditFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
+
+
                 JPanel panel = new JPanel();
                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                 panel.setOpaque(true);
@@ -117,18 +121,23 @@ public class DateEditFrame {
                 });
             }
 
-            public String StartDateSelection (){
-                String str_date = JOptionPane.showInputDialog("Enter start date in format (dd/MM/yyyy): ");
 
-                return str_date;
-
-            }
-            public String EndDateSelection(){
-                String end_date = JOptionPane.showInputDialog("Enter end date in format (dd/MM/yyyy): ");
-
-                return end_date;
-            }
 
         });
     }
+
+    public String StartDateSelection (){
+        String str_date = JOptionPane.showInputDialog("Enter start date in format (dd/MM/yyyy): ");
+
+        return str_date;
+
+    }
+    public String EndDateSelection(){
+        String end_date = JOptionPane.showInputDialog("Enter end date in format (dd/MM/yyyy): ");
+
+        return end_date;
+    }
+
+
+
 }
