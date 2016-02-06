@@ -4,7 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
         MainFrame mf = new MainFrame();
-        FixtureGenerating fg = new FixtureGenerating();
         mf.prepareGUI();
         mf.selectOption();
 

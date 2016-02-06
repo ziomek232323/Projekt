@@ -192,7 +192,7 @@ public class MainFrame {
 
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture();
-        fg.GenerateFixturesWithDate();
+        fg.Convert2dTOArrayList();
         lists = fg.getFixture();
 
 

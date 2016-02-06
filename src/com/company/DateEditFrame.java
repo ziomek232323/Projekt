@@ -13,6 +13,7 @@ public class DateEditFrame {
     public void createEditMenu() {
 
         FixtureDate dt = new FixtureDate();
+        FixtureGenerating fg = new FixtureGenerating();
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -119,10 +120,17 @@ public class DateEditFrame {
 
                     }
                 });
+
+                applyDates.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent r) {
+                        String tempPath = dt.GetDateFilePath();
+                        fg.PopulateListWithDates(tempPath);
+
+
+                    }
+                });
             }
-
-
-
         });
     }
 

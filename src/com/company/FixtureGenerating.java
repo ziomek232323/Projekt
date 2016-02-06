@@ -10,6 +10,8 @@ import java.util.List;
 public class FixtureGenerating {
     private String[][] fixtures;
     private int datesRequired;
+    private List<String> list;
+
     public void GenerateFixture() throws IOException{
         int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
         int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
@@ -64,16 +66,13 @@ public class FixtureGenerating {
         return this.fixtures;
     }
 
-    public void GenerateFixturesWithDate() {
+    public void Convert2dTOArrayList() {
         List<String> list = new ArrayList<String>();
         for (String[] array : fixtures) {
             list.addAll(Arrays.asList(array));
         }
-
-
+        this.list = list;
         setNumberOfDatesRequired(list.size());
-
-
 
     }
     public void setNumberOfDatesRequired(int num){
@@ -83,8 +82,15 @@ public class FixtureGenerating {
 
     }
 
-    public int getDatesRequired(){
+    public int getNumberOfDatesRequired(){
         return this.datesRequired;
+    }
+
+    public void PopulateListWithDates(String filePath){
+
+        for(int i=0;i<list.size();i++){
+
+        }
     }
 }
 
