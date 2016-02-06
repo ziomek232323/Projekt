@@ -5,6 +5,9 @@ import java.util.*;
 
 public class FixtureDate {
 
+        private String dateFilePath = "";
+
+
     public List setDate(Date startDate, Date endDate) throws IOException {
 
 
@@ -27,7 +30,7 @@ public class FixtureDate {
 
     public void DisplayDatesInFrame(String filePath, JTextArea frame) throws IOException {
 
-
+        frame.setText(null);
         String line;
         ArrayList <String> list = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -39,14 +42,35 @@ public class FixtureDate {
         for(int i = 0; i < list.size(); i ++){
             frame.append(list.get(i) + "\n");
         }
+
         br.close();
     }
 
+    public void AddSelectedDateToFile (String filePath, JTextArea frame, JComboBox date) throws IOException {
 
 
+
+        Writer out = new BufferedWriter(new FileWriter(filePath, true));
+
+            String line = date.getSelectedItem().toString();
+            out.append(line + "\n");
+            //System.out.print(line);
+            //System.out.print("File path is: " + filePath);
+            out.close();
+            DisplayDatesInFrame(filePath,frame);
+
+        }
+
+    public void SetDateFilePath(String dateFilePath){
+        this.dateFilePath = dateFilePath;
+    }
+    public String GetDateFilePath(){
+        return this.dateFilePath;
+    }
 
 
 }
+
 
 
 

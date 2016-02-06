@@ -256,6 +256,7 @@ public class Main extends JPanel {
                 JButton insertButton = new JButton("Insert");
                 JButton browseButton = new JButton("Browse");
                 JButton applyDates = new JButton("Apply");
+                JButton addDateFromComboBox = new JButton("Add");
                 final JFileChooser fileDialog1 = new JFileChooser("C:");
 
                 JComboBox cb = new JComboBox();
@@ -284,6 +285,7 @@ public class Main extends JPanel {
                 inputpanel.add(input);
                 inputpanel.add(insertButton);
                 inputpanel.add(browseButton);
+                inputpanel.add(addDateFromComboBox);
                 inputpanel.add(applyDates);
                 panel.add(inputpanel);
                 frame.getContentPane().add(BorderLayout.CENTER, panel);
@@ -301,6 +303,7 @@ public class Main extends JPanel {
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
                             java.io.File file1 = fileDialog1.getSelectedFile();
                             String dateFilePath = file1.getAbsolutePath();
+                            dt.SetDateFilePath(dateFilePath);
                             try {
                                 dt.DisplayDatesInFrame(dateFilePath,listOfDates);
                             } catch (IOException e) {
@@ -309,6 +312,20 @@ public class Main extends JPanel {
 
 
                         }
+                    }
+                });
+
+                addDateFromComboBox.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent r) {
+                        String tempPath = dt.GetDateFilePath();
+                        try {
+                            dt.AddSelectedDateToFile(tempPath, listOfDates, cb);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 });
             }
@@ -324,6 +341,7 @@ public class Main extends JPanel {
 
                 return end_date;
             }
+
         });
     }
 }
