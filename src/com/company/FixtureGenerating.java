@@ -2,12 +2,14 @@ package com.company;
 
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FixtureGenerating {
     private String[][] fixtures;
-
+    private int datesRequired;
     public void GenerateFixture() throws IOException{
         int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
         int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
@@ -24,9 +26,6 @@ public class FixtureGenerating {
             count++;
         }
         br.close();
-
-
-
 
         //Algorithm to get fixtures
         numberOfTeams = count;
@@ -63,6 +62,28 @@ public class FixtureGenerating {
     public String[][] getFixture(){
 
         return this.fixtures;
+    }
+
+    public void GenerateFixturesWithDate() {
+        List<String> list = new ArrayList<String>();
+        for (String[] array : fixtures) {
+            list.addAll(Arrays.asList(array));
+        }
+
+        int datesRequired = list.size();
+        setNumberOfDatesRequired(datesRequired);
+
+
+
+    }
+    public void setNumberOfDatesRequired(int num){
+
+        this.datesRequired = num;
+
+    }
+
+    public int getDatesRequired(){
+        return this.datesRequired;
     }
 }
 

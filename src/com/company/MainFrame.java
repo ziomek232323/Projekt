@@ -119,6 +119,7 @@ public class MainFrame {
                 } catch (IOException e) {
                     System.out.print(e);
 
+
                 }
             }
         });
@@ -191,6 +192,7 @@ public class MainFrame {
 
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture();
+        fg.GenerateFixturesWithDate();
         lists = fg.getFixture();
 
 
