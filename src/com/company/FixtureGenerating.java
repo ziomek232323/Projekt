@@ -70,8 +70,8 @@ public class FixtureGenerating {
             list.addAll(Arrays.asList(array));
         }
 
-        int datesRequired = list.size();
-        setNumberOfDatesRequired(datesRequired);
+
+        setNumberOfDatesRequired(list.size());
 
 
 
@@ -79,6 +79,7 @@ public class FixtureGenerating {
     public void setNumberOfDatesRequired(int num){
 
         this.datesRequired = num;
+        System.out.print(datesRequired);
 
     }
 

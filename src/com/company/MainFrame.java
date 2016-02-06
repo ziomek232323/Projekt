@@ -188,7 +188,7 @@ public class MainFrame {
 
     public void DisplaySchedule() throws IOException {
         String[][] lists;
-
+        displayFixtureArea.setText(null);
 
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture();
