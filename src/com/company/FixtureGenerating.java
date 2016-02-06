@@ -9,8 +9,9 @@ import java.util.List;
 
 public class FixtureGenerating {
     private String[][] fixtures;
-    private int datesRequired;
+    public int datesRequired = 0;
     private List<String> list;
+    FileManipulation fm = new FileManipulation();
 
     public void GenerateFixture() throws IOException{
         int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
@@ -71,26 +72,30 @@ public class FixtureGenerating {
         for (String[] array : fixtures) {
             list.addAll(Arrays.asList(array));
         }
+        int num = list.size();
         this.list = list;
-        setNumberOfDatesRequired(list.size());
 
-    }
-    public void setNumberOfDatesRequired(int num){
+        System.out.print("num =" + num);
+        datesRequired = num;
 
-        this.datesRequired = num;
-        System.out.print(datesRequired);
 
     }
 
-    public int getNumberOfDatesRequired(){
-        return this.datesRequired;
-    }
 
-    public void PopulateListWithDates(String filePath){
 
-        for(int i=0;i<list.size();i++){
+    public void PopulateListWithDates(String filePath) throws IOException {
+        fm.readDatesFile();
 
+        List <String> tempList = new ArrayList<>();
+        tempList = fm.getDatesList();
+        System.out.print("number of dates: " + tempList.size());
+        System.out.print("    number of dates Required: " + datesRequired);
+
+        if(tempList.size() < datesRequired){
+           System.out.print("Need more dates");
         }
+        else
+            System.out.print("Populating list with dates");
     }
 }
 

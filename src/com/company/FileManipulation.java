@@ -14,19 +14,23 @@ public class FileManipulation {
     public void readDatesFile() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("./src/dates.txt"));
         String line;
+        ArrayList<String> list = new ArrayList<>();
         while ((line = br.readLine()) != null) {
-            dates.add(line);
+            list.add(line);
         }
         br.close();
+        dates = list;
     }
 
     public void readTeamListFile() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
         String line;
+        ArrayList<String> list = new ArrayList<>();
         while ((line = br.readLine()) != null) {
-            teams.add(line);
+            list.add(line);
         }
         br.close();
+        teams = list;
     }
 
     public List<String> getDatesList(){

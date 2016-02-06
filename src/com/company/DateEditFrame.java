@@ -125,7 +125,12 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         String tempPath = dt.GetDateFilePath();
-                        fg.PopulateListWithDates(tempPath);
+                        try {
+                            fg.PopulateListWithDates(tempPath);
+                           // fg.Convert2dTOArrayList();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
 
                     }

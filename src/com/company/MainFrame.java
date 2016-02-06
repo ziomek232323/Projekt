@@ -28,7 +28,7 @@ public class MainFrame {
         mainFrame.setSize(900, 600);
         mainFrame.setResizable(false);
 
-        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
