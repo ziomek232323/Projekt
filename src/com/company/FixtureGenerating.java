@@ -10,7 +10,7 @@ import java.util.List;
 public class FixtureGenerating {
     private String[][] fixtures;
     public int datesRequired = 0;
-    private List<String> list;
+    private List<String> lists;
     FileManipulation fm = new FileManipulation();
 
     public void GenerateFixture() throws IOException{
@@ -67,35 +67,53 @@ public class FixtureGenerating {
         return this.fixtures;
     }
 
-    public void Convert2dTOArrayList() {
+    public void Convert2dTOArrayList() throws IOException {
         List<String> list = new ArrayList<String>();
         for (String[] array : fixtures) {
             list.addAll(Arrays.asList(array));
         }
         int num = list.size();
-        this.list = list;
 
-        System.out.print("num =" + num);
+
+        Writer out = new BufferedWriter(new FileWriter("./src/list.txt"));
+         for (int i =0; i <list.size();i++){
+
+             out.append(list.get(i) + "\n");
+           }
+
+
+        out.close();
+
+
+        SetList(list);
         datesRequired = num;
 
 
     }
 
+    public void SetList(List list){
+       this.lists = list;
+    }
+
+    public List GetList(){
+        return this.lists;
+    }
 
 
     public void PopulateListWithDates(String filePath) throws IOException {
         fm.readDatesFile();
 
-        List <String> tempList = new ArrayList<>();
-        tempList = fm.getDatesList();
-        System.out.print("number of dates: " + tempList.size());
-        System.out.print("    number of dates Required: " + datesRequired);
 
-        if(tempList.size() < datesRequired){
-           System.out.print("Need more dates");
-        }
-        else
-            System.out.print("Populating list with dates");
+        List<String> dateList = new ArrayList<>();
+        dateList = fm.getDatesList();
+
+
+
+
+
+
+
+
     }
 }
 
