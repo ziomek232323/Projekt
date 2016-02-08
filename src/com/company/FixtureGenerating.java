@@ -50,11 +50,11 @@ public class FixtureGenerating {
 
 
                 //names from file instead of numbers
-                for (int index = 0; index < count; index++) {
+              //  for (int index = 0; index < count; index++) {
 
-                    fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
+               //     fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
 
-                }
+              //  }
 
 
             }

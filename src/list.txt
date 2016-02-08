@@ -1,190 +1,91 @@
-AFC Bournemouth v West Ham United;
-Arsenal v West Bromwich Albion;
-Aston Villa v Watford;
-Chelsea v Tottenham Hotspur;
-Crystal Palace v Swansea City;
-Everton v Sunderland;
-Leicester City v Stoke City;
-Liverpool v Southampton;
-Manchester City v Norwich City;
-Manchester United v Newcastle United;
-Arsenal v West Ham United;
-Aston Villa v AFC Bournemouth;
-Chelsea v West Bromwich Albion;
-Crystal Palace v Watford;
-Everton v Tottenham Hotspur;
-Leicester City v Swansea City;
-Liverpool v Sunderland;
-Manchester City v Stoke City;
-Manchester United v Southampton;
-Newcastle United v Norwich City;
-Aston Villa v West Ham United;
-Chelsea v Arsenal;
-Crystal Palace v AFC Bournemouth;
-Everton v West Bromwich Albion;
-Leicester City v Watford;
-Liverpool v Tottenham Hotspur;
-Manchester City v Swansea City;
-Manchester United v Sunderland;
-Newcastle United v Stoke City;
-Norwich City v Southampton;
-Chelsea v West Ham United;
-Crystal Palace v Aston Villa;
-Everton v Arsenal;
-Leicester City v AFC Bournemouth;
-Liverpool v West Bromwich Albion;
-Manchester City v Watford;
-Manchester United v Tottenham Hotspur;
-Newcastle United v Swansea City;
-Norwich City v Sunderland;
-Southampton v Stoke City;
-Crystal Palace v West Ham United;
-Everton v Chelsea;
-Leicester City v Aston Villa;
-Liverpool v Arsenal;
-Manchester City v AFC Bournemouth;
-Manchester United v West Bromwich Albion;
-Newcastle United v Watford;
-Norwich City v Tottenham Hotspur;
-Southampton v Swansea City;
-Stoke City v Sunderland;
-Everton v West Ham United;
-Leicester City v Crystal Palace;
-Liverpool v Chelsea;
-Manchester City v Aston Villa;
-Manchester United v Arsenal;
-Newcastle United v AFC Bournemouth;
-Norwich City v West Bromwich Albion;
-Southampton v Watford;
-Stoke City v Tottenham Hotspur;
-Sunderland v Swansea City;
-Leicester City v West Ham United;
-Liverpool v Everton;
-Manchester City v Crystal Palace;
-Manchester United v Chelsea;
-Newcastle United v Aston Villa;
-Norwich City v Arsenal;
-Southampton v AFC Bournemouth;
-Stoke City v West Bromwich Albion;
-Sunderland v Watford;
-Swansea City v Tottenham Hotspur;
-Liverpool v West Ham United;
-Manchester City v Leicester City;
-Manchester United v Everton;
-Newcastle United v Crystal Palace;
-Norwich City v Chelsea;
-Southampton v Aston Villa;
-Stoke City v Arsenal;
-Sunderland v AFC Bournemouth;
-Swansea City v West Bromwich Albion;
-Tottenham Hotspur v Watford;
-Manchester City v West Ham United;
-Manchester United v Liverpool;
-Newcastle United v Leicester City;
-Norwich City v Everton;
-Southampton v Crystal Palace;
-Stoke City v Chelsea;
-Sunderland v Aston Villa;
-Swansea City v Arsenal;
-Tottenham Hotspur v AFC Bournemouth;
-Watford v West Bromwich Albion;
-Manchester United v West Ham United;
-Newcastle United v Manchester City;
-Norwich City v Liverpool;
-Southampton v Leicester City;
-Stoke City v Everton;
-Sunderland v Crystal Palace;
-Swansea City v Chelsea;
-Tottenham Hotspur v Aston Villa;
-Watford v Arsenal;
-West Bromwich Albion v AFC Bournemouth;
-Newcastle United v West Ham United;
-Norwich City v Manchester United;
-Southampton v Manchester City;
-Stoke City v Liverpool;
-Sunderland v Leicester City;
-Swansea City v Everton;
-Tottenham Hotspur v Crystal Palace;
-Watford v Chelsea;
-West Bromwich Albion v Aston Villa;
-AFC Bournemouth v Arsenal;
-Norwich City v West Ham United;
-Southampton v Newcastle United;
-Stoke City v Manchester United;
-Sunderland v Manchester City;
-Swansea City v Liverpool;
-Tottenham Hotspur v Leicester City;
-Watford v Everton;
-West Bromwich Albion v Crystal Palace;
-AFC Bournemouth v Chelsea;
-Arsenal v Aston Villa;
-Southampton v West Ham United;
-Stoke City v Norwich City;
-Sunderland v Newcastle United;
-Swansea City v Manchester United;
-Tottenham Hotspur v Manchester City;
-Watford v Liverpool;
-West Bromwich Albion v Leicester City;
-AFC Bournemouth v Everton;
-Arsenal v Crystal Palace;
-Aston Villa v Chelsea;
-Stoke City v West Ham United;
-Sunderland v Southampton;
-Swansea City v Norwich City;
-Tottenham Hotspur v Newcastle United;
-Watford v Manchester United;
-West Bromwich Albion v Manchester City;
-AFC Bournemouth v Liverpool;
-Arsenal v Leicester City;
-Aston Villa v Everton;
-Chelsea v Crystal Palace;
-Sunderland v West Ham United;
-Swansea City v Stoke City;
-Tottenham Hotspur v Southampton;
-Watford v Norwich City;
-West Bromwich Albion v Newcastle United;
-AFC Bournemouth v Manchester United;
-Arsenal v Manchester City;
-Aston Villa v Liverpool;
-Chelsea v Leicester City;
-Crystal Palace v Everton;
-Swansea City v West Ham United;
-Tottenham Hotspur v Sunderland;
-Watford v Stoke City;
-West Bromwich Albion v Southampton;
-AFC Bournemouth v Norwich City;
-Arsenal v Newcastle United;
-Aston Villa v Manchester United;
-Chelsea v Manchester City;
-Crystal Palace v Liverpool;
-Everton v Leicester City;
-Tottenham Hotspur v West Ham United;
-Watford v Swansea City;
-West Bromwich Albion v Sunderland;
-AFC Bournemouth v Stoke City;
-Arsenal v Southampton;
-Aston Villa v Norwich City;
-Chelsea v Newcastle United;
-Crystal Palace v Manchester United;
-Everton v Manchester City;
-Leicester City v Liverpool;
-Watford v West Ham United;
-West Bromwich Albion v Tottenham Hotspur;
-AFC Bournemouth v Swansea City;
-Arsenal v Sunderland;
-Aston Villa v Stoke City;
-Chelsea v Southampton;
-Crystal Palace v Norwich City;
-Everton v Newcastle United;
-Leicester City v Manchester United;
-Liverpool v Manchester City;
-West Bromwich Albion v West Ham United;
-AFC Bournemouth v Watford;
-Arsenal v Tottenham Hotspur;
-Aston Villa v Swansea City;
-Chelsea v Sunderland;
-Crystal Palace v Stoke City;
-Everton v Southampton;
-Leicester City v Norwich City;
-Liverpool v Newcastle United;
-Manchester City v Manchester United;
+1 v 14
+2 v 13
+3 v 12
+4 v 11
+5 v 10
+6 v 9
+7 v 8
+2 v 14
+3 v 1
+4 v 13
+5 v 12
+6 v 11
+7 v 10
+8 v 9
+3 v 14
+4 v 2
+5 v 1
+6 v 13
+7 v 12
+8 v 11
+9 v 10
+4 v 14
+5 v 3
+6 v 2
+7 v 1
+8 v 13
+9 v 12
+10 v 11
+5 v 14
+6 v 4
+7 v 3
+8 v 2
+9 v 1
+10 v 13
+11 v 12
+6 v 14
+7 v 5
+8 v 4
+9 v 3
+10 v 2
+11 v 1
+12 v 13
+7 v 14
+8 v 6
+9 v 5
+10 v 4
+11 v 3
+12 v 2
+13 v 1
+8 v 14
+9 v 7
+10 v 6
+11 v 5
+12 v 4
+13 v 3
+1 v 2
+9 v 14
+10 v 8
+11 v 7
+12 v 6
+13 v 5
+1 v 4
+2 v 3
+10 v 14
+11 v 9
+12 v 8
+13 v 7
+1 v 6
+2 v 5
+3 v 4
+11 v 14
+12 v 10
+13 v 9
+1 v 8
+2 v 7
+3 v 6
+4 v 5
+12 v 14
+13 v 11
+1 v 10
+2 v 9
+3 v 8
+4 v 7
+5 v 6
+13 v 14
+1 v 12
+2 v 11
+3 v 10
+4 v 9
+5 v 8
+6 v 7
