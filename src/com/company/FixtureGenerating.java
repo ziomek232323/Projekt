@@ -40,8 +40,10 @@ public class FixtureGenerating {
 
         for (roundNumber = 0; roundNumber < totalNumberOfRounds; roundNumber++) {
             for (matchNumber = 0; matchNumber < numberOfMatchesPerRound; matchNumber++) {
-
+                //0
                 homeTeamNumber = (roundNumber + matchNumber) % (numberOfTeams - 1);
+
+                //19
                 awayTeamNumber = (numberOfTeams - 1 - matchNumber + roundNumber) % (numberOfTeams - 1);
                 if (matchNumber == 0)
                     awayTeamNumber = numberOfTeams - 1;
