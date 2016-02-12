@@ -9,6 +9,9 @@ import java.util.List;
 
 public class FixtureGenerating {
     private String[][] fixtures;
+    String[][] revisedFixtures;
+    String[] elementsOfFixture;
+    String fixtureAsText;
     public int datesRequired = 0;
     private List<String> lists;
     FileManipulation fm = new FileManipulation();
@@ -52,13 +55,31 @@ public class FixtureGenerating {
 
 
                 //names from file instead of numbers
-              //  for (int index = 0; index < count; index++) {
+                // for (int index = 0; index < count; index++) {
 
-               //     fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
+                //   fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
 
-              //  }
+                //  }
 
 
+            }
+        }
+        String[][] revisedFixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
+        int even = 0;
+        int odd = numberOfTeams / 2;
+        for (int i = 0; i < fixtures.length; i++) {
+            if (i % 2 == 0)
+                revisedFixtures[i] = fixtures[even++];
+            else
+                revisedFixtures[i] = fixtures[odd++];
+        }
+        fixtures = revisedFixtures;
+
+        for (roundNumber = 0; roundNumber < fixtures.length; roundNumber++) {
+            if (roundNumber % 2 == 1) {
+                fixtureAsText = fixtures[roundNumber][0];
+                elementsOfFixture = fixtureAsText.split(" v ");
+                fixtures[roundNumber][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
             }
         }
 
