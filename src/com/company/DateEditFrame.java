@@ -99,6 +99,7 @@ public class DateEditFrame {
                             dt.SetDateFilePath(dateFilePath);
                             try {
                                 dt.DisplayDatesInFrame(dateFilePath,listOfDates);
+
                             } catch (IOException e) {
 
                             }
@@ -132,7 +133,9 @@ public class DateEditFrame {
                             //fg.PopulateListWithDates(tempPath);
                            // fg.Convert2dTOArrayList();
                         try {
+                            frame.dispose();
                             fg.AssignSlots();
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

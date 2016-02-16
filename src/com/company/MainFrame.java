@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class MainFrame {
@@ -129,6 +130,8 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent z) {
                 DateEditFrame def = new DateEditFrame();
+
+
                 def.createEditMenu();
 
             }
@@ -157,6 +160,7 @@ public class MainFrame {
 
 
     }
+
 
 
     public void displayList() throws IOException {
@@ -209,6 +213,45 @@ public class MainFrame {
             }
         }
     }
+    public void DisplayScheduleWithDates(ArrayList list, int matchesPerRound)throws IOException{
+        JFrame secondFrame = new JFrame("Sports Scheduler");
+        secondFrame.setSize(600, 600);
+        secondFrame.setResizable(false);
+
+        secondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       JPanel displayTeamListPanelDates = new JPanel();
+        displayTeamListPanelDates.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+
+        JTextArea displayScheduleWithDates = new JTextArea(25, 65);
+        JScrollPane scrollDisplaywithDates = new JScrollPane(displayScheduleWithDates);
+        displayScheduleWithDates.setBorder(BorderFactory.createTitledBorder("Fixtures"));
+        displayScheduleWithDates.setEditable(false);
+        secondFrame.add(displayTeamListPanelDates);
+        secondFrame.setVisible(true);
+        displayTeamListPanelDates.add(scrollDisplaywithDates);
+        int roundCount =1;
+        displayScheduleWithDates.append("Round "+(roundCount) + "\n\n");
+        for(int i = 0; i < list.size(); i++){
+            displayScheduleWithDates.append(String.valueOf(list.get(i)));
+            displayScheduleWithDates.append("\n\n ");
+            if(i !=0){
+            if(i % (matchesPerRound) == 0){
+                displayScheduleWithDates.append("\n\n\n");
+                displayScheduleWithDates.append("Round "+(roundCount+1) + "\n\n");
+                roundCount++;
+            }}
+
+
+        }
+    }
+
+
 
     public String getFilePath(){
         return filePath;
