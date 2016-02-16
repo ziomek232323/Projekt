@@ -45,6 +45,7 @@ public class DateEditFrame {
                 JPanel inputpanel = new JPanel();
                 inputpanel.setLayout(new FlowLayout());
                 JTextField input = new JTextField(20);
+                input.setText("Slot X - Day(time)");
                 JButton insertButton = new JButton("Insert");
                 JButton browseButton = new JButton("Browse");
                 JButton applyDates = new JButton("Apply");
@@ -73,11 +74,11 @@ public class DateEditFrame {
 
                 */
                 panel.add(scroller);
-                panel.add(cb);
+                //panel.add(cb);
                 inputpanel.add(input);
                 inputpanel.add(insertButton);
                 inputpanel.add(browseButton);
-                inputpanel.add(addDateFromComboBox);
+                //inputpanel.add(addDateFromComboBox);
                 inputpanel.add(applyDates);
                 panel.add(inputpanel);
                 frame.getContentPane().add(BorderLayout.CENTER, panel);

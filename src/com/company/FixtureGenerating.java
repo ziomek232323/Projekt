@@ -167,13 +167,18 @@ public class FixtureGenerating {
 
         }
         int count=0;
+        int teamCount = 0;
         ArrayList<String> list = new ArrayList<>();
         while ((line = br.readLine()) != null) {
-            if(count == (slotsAvailable - 1)) {
+            if(count == (slotsAvailable)) {
                 count = 0;
+            }
+            else if(teamCount == matchesPerRound){
+                count =0;
             }
             list.add(line + " " + dates.get(count));
             count++;
+            teamCount++;
         }
         br.close();
 
