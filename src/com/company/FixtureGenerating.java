@@ -181,7 +181,8 @@ public class FixtureGenerating {
             teamCount++;
         }
         br.close();
-
+        Writer out = new BufferedWriter(new FileWriter("./src/list.txt"));
+        out.append(null);
 
         for(int i = 0; i < list.size(); i++){
             //System.out.println(list.get(i));

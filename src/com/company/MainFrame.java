@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
 
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
 
 public class MainFrame {
 
@@ -29,7 +31,7 @@ public class MainFrame {
         mainFrame.setSize(900, 600);
         mainFrame.setResizable(false);
 
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
@@ -148,12 +150,12 @@ public class MainFrame {
                     out.close();
 
                 } catch (IOException za) {
-                    System.out.print(za);
+
                 }
                 try {
                     rePaintTextArea();
                 } catch (IOException za) {
-                    System.out.print(za);
+
                 }
             }
         });
@@ -218,7 +220,7 @@ public class MainFrame {
         secondFrame.setSize(600, 600);
         secondFrame.setResizable(false);
 
-        secondFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        secondFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

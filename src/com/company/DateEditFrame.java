@@ -10,6 +10,7 @@ import java.util.*;
 
 
 public class DateEditFrame {
+    private String dateFilePath = "";
     public void createEditMenu() {
 
         FixtureDate dt = new FixtureDate();
@@ -90,12 +91,14 @@ public class DateEditFrame {
 
 
                 browseButton.addActionListener(new ActionListener() {
+
+
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         int returnVal = fileDialog1.showOpenDialog(frame);
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
                             java.io.File file1 = fileDialog1.getSelectedFile();
-                            String dateFilePath = file1.getAbsolutePath();
+                            dateFilePath = file1.getAbsolutePath();
                             dt.SetDateFilePath(dateFilePath);
                             try {
                                 dt.DisplayDatesInFrame(dateFilePath,listOfDates);
@@ -140,6 +143,25 @@ public class DateEditFrame {
                             e.printStackTrace();
                         }
 
+
+                    }
+                });
+                insertButton.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent z) {
+
+
+                        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("./src/dates.txt", true)))) {
+
+                            out.println(input.getText());
+                            out.close();
+                            dt.DisplayDatesInFrame(dateFilePath,listOfDates);
+
+
+                        } catch (IOException za) {
+
+                        }
 
                     }
                 });
