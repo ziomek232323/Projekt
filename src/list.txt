@@ -1,98 +1,120 @@
-1 v 15
-2 v 14
-3 v 13
-4 v 12
-5 v 11
-6 v 10
-7 v 9
-15 v 8
-9 v 7
-10 v 6
-11 v 5
-12 v 4
-13 v 3
-14 v 2
-2 v 15
-3 v 1
-4 v 14
-5 v 13
-6 v 12
-7 v 11
-8 v 10
-15 v 9
-10 v 8
-11 v 7
-12 v 6
-13 v 5
-14 v 4
-1 v 3
-3 v 15
-4 v 2
-5 v 1
-6 v 14
-7 v 13
-8 v 12
-9 v 11
-15 v 10
-11 v 9
-12 v 8
-13 v 7
-14 v 6
-1 v 5
-2 v 4
-4 v 15
-5 v 3
-6 v 2
-7 v 1
-8 v 14
-9 v 13
-10 v 12
-15 v 11
-12 v 10
-13 v 9
-14 v 8
-1 v 7
-2 v 6
-3 v 5
-5 v 15
-6 v 4
-7 v 3
-8 v 2
-9 v 1
-10 v 14
-11 v 13
-15 v 12
-13 v 11
-14 v 10
-1 v 9
-2 v 8
-3 v 7
-4 v 6
-6 v 15
-7 v 5
-8 v 4
-9 v 3
-10 v 2
-11 v 1
-12 v 14
-15 v 13
-14 v 12
-1 v 11
-2 v 10
-3 v 9
-4 v 8
-5 v 7
-7 v 15
-8 v 6
-9 v 5
-10 v 4
-11 v 3
-12 v 2
-13 v 1
-15 v 14
-1 v 13
-2 v 12
-3 v 11
-4 v 10
-5 v 9
-6 v 8
+AFC Bournemouth v Bruff FC;
+Arsenal v Kilmallock FC;
+Aston Villa v Stoke City;
+Chelsea v Southampton;
+Crystal Palace v Norwich City;
+Everton v Newcastle United;
+Leicester City v Manchester United;
+Liverpool v Manchester City;
+Bruff FC; v Manchester City
+Manchester United v Liverpool;
+Newcastle United v Leicester City;
+Norwich City v Everton;
+Southampton v Crystal Palace;
+Stoke City v Chelsea;
+Kilmallock FC v Aston Villa;
+AFC Bournemouth v Arsenal;
+Arsenal v Bruff FC;
+Aston Villa v AFC Bournemouth;
+Chelsea v Kilmallock FC;
+Crystal Palace v Stoke City;
+Everton v Southampton;
+Leicester City v Norwich City;
+Liverpool v Newcastle United;
+Manchester City v Manchester United;
+Bruff FC; v Manchester United
+Newcastle United v Manchester City;
+Norwich City v Liverpool;
+Southampton v Leicester City;
+Stoke City v Everton;
+Kilmallock FC v Crystal Palace;
+AFC Bournemouth v Chelsea;
+Arsenal v Aston Villa;
+Aston Villa v Bruff FC;
+Chelsea v Arsenal;
+Crystal Palace v AFC Bournemouth;
+Everton v Kilmallock FC;
+Leicester City v Stoke City;
+Liverpool v Southampton;
+Manchester City v Norwich City;
+Manchester United v Newcastle United;
+Bruff FC; v Newcastle United
+Norwich City v Manchester United;
+Southampton v Manchester City;
+Stoke City v Liverpool;
+Kilmallock FC v Leicester City;
+AFC Bournemouth v Everton;
+Arsenal v Crystal Palace;
+Aston Villa v Chelsea;
+Chelsea v Bruff FC;
+Crystal Palace v Aston Villa;
+Everton v Arsenal;
+Leicester City v AFC Bournemouth;
+Liverpool v Kilmallock FC;
+Manchester City v Stoke City;
+Manchester United v Southampton;
+Newcastle United v Norwich City;
+Bruff FC; v Norwich City
+Southampton v Newcastle United;
+Stoke City v Manchester United;
+Kilmallock FC v Manchester City;
+AFC Bournemouth v Liverpool;
+Arsenal v Leicester City;
+Aston Villa v Everton;
+Chelsea v Crystal Palace;
+Crystal Palace v Bruff FC;
+Everton v Chelsea;
+Leicester City v Aston Villa;
+Liverpool v Arsenal;
+Manchester City v AFC Bournemouth;
+Manchester United v Kilmallock FC;
+Newcastle United v Stoke City;
+Norwich City v Southampton;
+Bruff FC; v Southampton
+Stoke City v Norwich City;
+Kilmallock FC v Newcastle United;
+AFC Bournemouth v Manchester United;
+Arsenal v Manchester City;
+Aston Villa v Liverpool;
+Chelsea v Leicester City;
+Crystal Palace v Everton;
+Everton v Bruff FC;
+Leicester City v Crystal Palace;
+Liverpool v Chelsea;
+Manchester City v Aston Villa;
+Manchester United v Arsenal;
+Newcastle United v AFC Bournemouth;
+Norwich City v Kilmallock FC;
+Southampton v Stoke City;
+Bruff FC; v Stoke City
+Kilmallock FC v Southampton;
+AFC Bournemouth v Norwich City;
+Arsenal v Newcastle United;
+Aston Villa v Manchester United;
+Chelsea v Manchester City;
+Crystal Palace v Liverpool;
+Everton v Leicester City;
+Leicester City v Bruff FC;
+Liverpool v Everton;
+Manchester City v Crystal Palace;
+Manchester United v Chelsea;
+Newcastle United v Aston Villa;
+Norwich City v Arsenal;
+Southampton v AFC Bournemouth;
+Stoke City v Kilmallock FC;
+Bruff FC; v Kilmallock FC
+AFC Bournemouth v Stoke City;
+Arsenal v Southampton;
+Aston Villa v Norwich City;
+Chelsea v Newcastle United;
+Crystal Palace v Manchester United;
+Everton v Manchester City;
+Leicester City v Liverpool;
+Liverpool v Bruff FC;
+Manchester City v Leicester City;
+Manchester United v Everton;
+Newcastle United v Crystal Palace;
+Norwich City v Chelsea;
+Southampton v Aston Villa;
+Stoke City v Arsenal;
+Kilmallock FC v AFC Bournemouth;

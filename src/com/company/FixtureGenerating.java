@@ -2,7 +2,6 @@ package com.company;
 
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,15 +14,18 @@ public class FixtureGenerating {
     public int datesRequired = 0;
     private List<String> lists;
     FileManipulation fm = new FileManipulation();
+    private int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
+    private int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
+
 
     public void GenerateFixture() throws IOException{
-        int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
-        int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
+
+
 
         BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
         String line;
         int count = 0;
-        List<String> temps = new ArrayList<String>();
+        List<String> temps = new ArrayList<>();
         while ((line = br.readLine()) != null) {
 
             temps.add(line);
@@ -54,17 +56,17 @@ public class FixtureGenerating {
                 fixtures[roundNumber][matchNumber] = (homeTeamNumber + 1) + " v " + (awayTeamNumber + 1);
 
 
-                //names from file instead of numbers
-                // for (int index = 0; index < count; index++) {
 
-                //   fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
+                 for (int index = 0; index < count; index++) {
 
-                //  }
+                   fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
+
+                  }
 
 
             }
         }
-        String[][] revisedFixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
+        revisedFixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
         int even = 0;
         int odd = numberOfTeams / 2;
         for (int i = 0; i < fixtures.length; i++) {
@@ -82,6 +84,7 @@ public class FixtureGenerating {
                 fixtures[roundNumber][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
             }
         }
+        setFixturesArray(fixtures);
 
     }
 
@@ -91,7 +94,7 @@ public class FixtureGenerating {
     }
 
     public void Convert2dTOArrayList() throws IOException {
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         for (String[] array : fixtures) {
             list.addAll(Arrays.asList(array));
         }
@@ -122,6 +125,10 @@ public class FixtureGenerating {
         return this.lists;
     }
 
+    public void setFixturesArray (String [] [] list){
+        this.fixtures = list;
+    }
+
 
     public void PopulateListWithDates(String filePath) throws IOException {
         fm.readDatesFile();
@@ -131,14 +138,59 @@ public class FixtureGenerating {
         dateList = fm.getDatesList();
 
 
+    }
+
+    public void AssignSlots() throws IOException {
+        FileManipulation fm = new FileManipulation();
+        int slotsAvailable = 0;
+        int matchesPerRound = 0;
+        try {
+             matchesPerRound = (fm.NumberOfTeams())/2;
+             slotsAvailable = fm.NumberOfSlotsAvailable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Number of matches per round: " + matchesPerRound );
+        System.out.println("Number of slots available: " + slotsAvailable );
 
 
 
 
+        //read list file
+        BufferedReader br = new BufferedReader(new FileReader("./src/list.txt"));
+        BufferedReader bd = new BufferedReader(new FileReader("./src/dates.txt"));
+        String line;
+        String lines;
+        ArrayList<String> dates = new ArrayList<>();
+        while ((lines = bd.readLine()) != null) {
+            dates.add(lines);
 
+        }
+        int count=0;
+        ArrayList<String> list = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            if(count == (slotsAvailable - 1)) {
+                count = 0;
+            }
+            list.add(line + " " + dates.get(count));
+            count++;
+        }
+        br.close();
+
+
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i));
+        }
 
     }
+
+
+
+
+
 }
+
+
 
 
 

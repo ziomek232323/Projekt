@@ -33,6 +33,27 @@ public class FileManipulation {
         teams = list;
     }
 
+    public int NumberOfTeams() throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
+        String line;
+        int count=0;
+        while ((line = br.readLine()) != null) {
+           count++;
+        }
+        br.close();
+        return count;
+    }
+    public int NumberOfSlotsAvailable() throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("./src/dates.txt"));
+        String line;
+        int count=0;
+        while ((line = br.readLine()) != null) {
+            count++;
+        }
+        br.close();
+        return count;
+    }
+
     public List<String> getDatesList(){
 
         return this.dates;

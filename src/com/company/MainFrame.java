@@ -210,5 +210,7 @@ public class MainFrame {
         }
     }
 
-
+    public String getFilePath(){
+        return filePath;
+    }
 }

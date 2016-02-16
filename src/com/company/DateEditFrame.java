@@ -35,7 +35,7 @@ public class DateEditFrame {
                 JTextArea listOfDates = new JTextArea(15, 50);
                 listOfDates.setWrapStyleWord(true);
                 listOfDates.setEditable(false);
-                listOfDates.setBorder(BorderFactory.createTitledBorder("List Of Dates Available"));
+                listOfDates.setBorder(BorderFactory.createTitledBorder("List Of slots Available"));
                 listOfDates.setFont(Font.getFont(Font.SANS_SERIF));
                 JScrollPane scroller = new JScrollPane(listOfDates);
                 scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -52,7 +52,7 @@ public class DateEditFrame {
                 final JFileChooser fileDialog1 = new JFileChooser("C:");
 
                 JComboBox cb = new JComboBox();
-
+                /*
                 String str_date = StartDateSelection();
                 String end_date = EndDateSelection();
                 Date startDate = null;
@@ -71,7 +71,7 @@ public class DateEditFrame {
                     e.printStackTrace();
                 }
 
-
+                */
                 panel.add(scroller);
                 panel.add(cb);
                 inputpanel.add(input);
@@ -111,12 +111,14 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         String tempPath = dt.GetDateFilePath();
+                        /*
+
                         try {
                             dt.AddSelectedDateToFile(tempPath, listOfDates, cb);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
+                        */
 
                     }
                 });
@@ -125,9 +127,11 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         String tempPath = dt.GetDateFilePath();
-                        try {
-                            fg.PopulateListWithDates(tempPath);
+
+                            //fg.PopulateListWithDates(tempPath);
                            // fg.Convert2dTOArrayList();
+                        try {
+                            fg.AssignSlots();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
