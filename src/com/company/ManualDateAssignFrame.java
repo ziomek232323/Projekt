@@ -65,8 +65,10 @@ public class ManualDateAssignFrame {
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500,600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
+        //Populating the comboBox with slots
         List<String> dates = fm.getDatesList();
         cb.setModel(new DefaultComboBoxModel<>(dates.toArray()));
+
         JScrollPane scrollPane1 = new JScrollPane(table);
         panel.add(scrollPane1);
         frame.add(panel);
