@@ -15,6 +15,7 @@ public class DateEditFrame {
 
         FixtureDate dt = new FixtureDate();
         FixtureGenerating fg = new FixtureGenerating();
+
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -50,6 +51,7 @@ public class DateEditFrame {
                 JButton insertButton = new JButton("Insert");
                 JButton browseButton = new JButton("Browse");
                 JButton applyDates = new JButton("Apply");
+                JButton editDateManuallyButton = new JButton("Assign Dates");
                 JButton addDateFromComboBox = new JButton("Add");
                 final JFileChooser fileDialog1 = new JFileChooser("C:");
 
@@ -81,6 +83,7 @@ public class DateEditFrame {
                 inputpanel.add(browseButton);
                 //inputpanel.add(addDateFromComboBox);
                 inputpanel.add(applyDates);
+                inputpanel.add(editDateManuallyButton);
                 panel.add(inputpanel);
                 frame.getContentPane().add(BorderLayout.CENTER, panel);
                 frame.pack();
@@ -142,6 +145,18 @@ public class DateEditFrame {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
+
+                    }
+                });
+                editDateManuallyButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent r) {
+                        DateAssigningFrame daf = new DateAssigningFrame();
+                        String tempPath = dt.GetDateFilePath();
+                        frame.dispose();
+
+
 
 
                     }
