@@ -74,28 +74,6 @@ public class FixtureDate {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /*
         //first match August 8th
 

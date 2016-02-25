@@ -54,8 +54,12 @@ public class FileManipulation {
         return count;
     }
 
-    public List<String> getDatesList(){
-
+    public List<String> getDatesList() throws IOException {
+        try {
+            readDatesFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return this.dates;
     }
 

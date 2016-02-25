@@ -5,11 +5,13 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
 
 
 public class ManualDateAssignFrame {
     JTable table;
+    FileManipulation fm = new FileManipulation();
 
     Object [][] tests;
 
@@ -28,7 +30,6 @@ public class ManualDateAssignFrame {
 
         final JPanel panel = new JPanel();
         JComboBox cb = new JComboBox();
-
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
         String lines;
         int count = 0;
@@ -59,24 +60,16 @@ public class ManualDateAssignFrame {
 
         String[] columns = {"Fixtures", "Slots"};
 
-        Object [][] data =  {{"bill","hazel"},
-                            { "Mary","black"},
-                            { "Mary","black"},
-                            { "Mary","black"},
-                            { "Mary","black"},
-                            { "Mary","black"}};
 
         table = new JTable(fixturess,columns);
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500,600));
-
+        table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
+        List<String> dates = fm.getDatesList();
+        cb.setModel(new DefaultComboBoxModel<>(dates.toArray()));
         JScrollPane scrollPane1 = new JScrollPane(table);
-
         panel.add(scrollPane1);
         frame.add(panel);
-
-
-
 
 
 
