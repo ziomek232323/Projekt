@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.text.*;
-import java.util.*;
 
 
 public class DateEditFrame {
@@ -15,6 +13,7 @@ public class DateEditFrame {
 
         FixtureDate dt = new FixtureDate();
         FixtureGenerating fg = new FixtureGenerating();
+
 
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -152,11 +151,14 @@ public class DateEditFrame {
                 editDateManuallyButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent r) {
-                        DateAssigningFrame daf = new DateAssigningFrame();
+                        ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
                         String tempPath = dt.GetDateFilePath();
                         frame.dispose();
-
-
+                        try {
+                            mdaf.createAndShowUI();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
 
                     }
