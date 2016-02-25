@@ -18,7 +18,7 @@ public class ManualDateAssignFrame {
 
     public void createAndShowUI() throws IOException {
         JFrame frame = new JFrame("Test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(600,800);
         initComponents(frame);
         frame.setVisible(true);
@@ -40,8 +40,17 @@ public class ManualDateAssignFrame {
 
         Object [][] fixturess = new Object[count][2];
 
-        for (int r=0; r<fixtures.size(); r++) {
+
+
+        int roundCount =1;
+        fixturess[0][0] = ("Round "+(roundCount) + "\n\n");
+        for (int r=1; r<fixtures.size(); r++) {
               fixturess[r][0]= fixtures.get(r);
+            if(r !=1){
+                if(r % (10) == 0){
+                    fixturess[r][0]=("Round "+(roundCount+1) + "\n\n");
+                    roundCount++;
+                }}
 
         }
 

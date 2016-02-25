@@ -49,7 +49,7 @@ public class DateEditFrame {
                 input.setText("Slot X - Day(time)");
                 JButton insertButton = new JButton("Insert");
                 JButton browseButton = new JButton("Browse");
-                JButton applyDates = new JButton("Apply");
+                JButton applyDates = new JButton("Apply Automatic Dates");
                 JButton editDateManuallyButton = new JButton("Assign Dates");
                 JButton addDateFromComboBox = new JButton("Add");
                 final JFileChooser fileDialog1 = new JFileChooser("C:");

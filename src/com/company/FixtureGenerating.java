@@ -14,11 +14,12 @@ public class FixtureGenerating {
     public int datesRequired = 0;
     private List<String> lists;
     FileManipulation fm = new FileManipulation();
-    private int numberOfTeams, totalNumberOfRounds, numberOfMatchesPerRound;
-    private int homeTeamNumber, awayTeamNumber,roundNumber, matchNumber;
+    private int numberOfTeams, numberOfRounds, matchesPerRound;
+    private int homeTeamNum, awayTeamNumber,roundNum, matchNumber;
 
 
     public void GenerateFixture() throws IOException{
+
 
 
 
@@ -35,38 +36,35 @@ public class FixtureGenerating {
         }
         br.close();
 
-        //Algorithm to get fixtures
         numberOfTeams = count;
-        totalNumberOfRounds = numberOfTeams - 1;
-        numberOfMatchesPerRound = numberOfTeams / 2;
+        numberOfRounds = numberOfTeams - 1;
+        matchesPerRound = numberOfTeams / 2;
 
 
-        fixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
+        fixtures = new String[numberOfRounds][matchesPerRound];
 
-        for (roundNumber = 0; roundNumber < totalNumberOfRounds; roundNumber++) {
-            for (matchNumber = 0; matchNumber < numberOfMatchesPerRound; matchNumber++) {
-                //0
-                homeTeamNumber = (roundNumber + matchNumber) % (numberOfTeams - 1);
+        for (roundNum = 0; roundNum < numberOfRounds; roundNum++) {
+            for (matchNumber = 0; matchNumber < matchesPerRound; matchNumber++) {
 
-                //19
-                awayTeamNumber = (numberOfTeams - 1 - matchNumber + roundNumber) % (numberOfTeams - 1);
+                homeTeamNum = (roundNum + matchNumber) % (numberOfTeams - 1);
+                awayTeamNumber = (numberOfTeams - 1 - matchNumber + roundNum) % (numberOfTeams - 1);
                 if (matchNumber == 0)
                     awayTeamNumber = numberOfTeams - 1;
 
-                fixtures[roundNumber][matchNumber] = (homeTeamNumber + 1) + " v " + (awayTeamNumber + 1);
-
-
-
+                fixtures[roundNum][matchNumber] = (homeTeamNum + 1) + " v " + (awayTeamNumber + 1);
                  for (int index = 0; index < count; index++) {
 
-                   fixtures[roundNumber][matchNumber] = (temps.get(homeTeamNumber)) + " v " + (temps.get(awayTeamNumber)+ ";");
+                   fixtures[roundNum][matchNumber] = (temps.get(homeTeamNum)) + " v " + (temps.get(awayTeamNumber)+ ";");
 
                   }
 
 
             }
         }
-        revisedFixtures = new String[totalNumberOfRounds][numberOfMatchesPerRound];
+
+
+        //Berger Table fix
+        revisedFixtures = new String[numberOfRounds][matchesPerRound];
         int even = 0;
         int odd = numberOfTeams / 2;
         for (int i = 0; i < fixtures.length; i++) {
@@ -77,11 +75,11 @@ public class FixtureGenerating {
         }
         fixtures = revisedFixtures;
 
-        for (roundNumber = 0; roundNumber < fixtures.length; roundNumber++) {
-            if (roundNumber % 2 == 1) {
-                fixtureAsText = fixtures[roundNumber][0];
+        for (roundNum = 0; roundNum < fixtures.length; roundNum++) {
+            if (roundNum % 2 == 1) {
+                fixtureAsText = fixtures[roundNum][0];
                 elementsOfFixture = fixtureAsText.split(" v ");
-                fixtures[roundNumber][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
+                fixtures[roundNum][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
             }
         }
         setFixturesArray(fixtures);
