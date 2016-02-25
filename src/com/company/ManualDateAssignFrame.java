@@ -32,11 +32,13 @@ public class ManualDateAssignFrame {
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
         String lines;
         int count = 0;
-        ArrayList<String> fixtures = new ArrayList<>();
+        ArrayList<String> matches = new ArrayList<>();
         while ((lines = bd.readLine()) != null) {
-            fixtures.add(lines);
+            matches.add(lines);
             count++;
         }
+        if(matches.size()==0)
+        JOptionPane.showMessageDialog(null,"Please Generate a Schedule First.");
 
         Object [][] fixturess = new Object[count][2];
 
@@ -44,8 +46,8 @@ public class ManualDateAssignFrame {
 
         int roundCount =1;
         fixturess[0][0] = ("Round "+(roundCount) + "\n\n");
-        for (int r=1; r<fixtures.size(); r++) {
-              fixturess[r][0]= fixtures.get(r);
+        for (int r=1; r<matches.size(); r++) {
+              fixturess[r][0]= matches.get(r);
             if(r !=1){
                 if(r % (10) == 0){
                     fixturess[r][0]=("Round "+(roundCount+1) + "\n\n");
