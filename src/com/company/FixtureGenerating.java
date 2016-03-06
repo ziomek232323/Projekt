@@ -14,7 +14,7 @@ public class FixtureGenerating {
     public int datesRequired = 0;
     private List<String> lists;
     FileManipulation fm = new FileManipulation();
-    private int numberOfTeams, numberOfRounds, matchesPerRound;
+    public int numberOfTeams, numberOfRounds, matchesPerRound;
     private int homeTeamNum, awayTeamNumber,roundNum, matchNumber;
 
 
@@ -83,6 +83,7 @@ public class FixtureGenerating {
             }
         }
         setFixturesArray(fixtures);
+
 
     }
 
@@ -189,6 +190,7 @@ public class FixtureGenerating {
         mf.DisplayScheduleWithDates(list, matchesPerRound);
 
     }
+
 
 
 

@@ -151,11 +151,13 @@ public class DateEditFrame {
                 editDateManuallyButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent r) {
-                        ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
-                        String tempPath = dt.GetDateFilePath();
+                        //ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
+                        //String tempPath = dt.GetDateFilePath();
+                        DynamicDateAssignment dda = new DynamicDateAssignment();
                         frame.dispose();
                         try {
-                            mdaf.createAndShowUI();
+                            //mdaf.createAndShowUI();
+                            dda.createAndShowUI();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
