@@ -25,8 +25,8 @@ public class DynamicDateAssignment {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //frame.setSize(600,700);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //frame.setBounds(0,0,screenSize.width, screenSize.height);
-        frame.setSize(screenSize.width, 400);
+        frame.setBounds(0,0,screenSize.width, (screenSize.height - 50));
+
         initComponents(frame);
         frame.setVisible(true);
     }
@@ -36,6 +36,8 @@ public class DynamicDateAssignment {
         final JPanel panel = new JPanel();
         JPanel basePanel = new JPanel();
         JPanel container = new JPanel();
+        container.setLayout(new GridLayout(4,2));
+        //container.setLayout(new FlowLayout());
         /*
         JComboBox cb = new JComboBox();
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
@@ -81,34 +83,43 @@ public class DynamicDateAssignment {
 
 
 
-        for (int i = 0; i < 15; ++i)
+        for (int i = 0; i < 20; ++i)
         {
             Object[] column = {"Fixture", "Slots"};
             Object[][] data = {{"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"One", "Two"}, {"Three", "Four"}, {"Five", "Five"}};
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
+                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
+                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"}};
 
             JTable tbl = new JTable(data,column);
+            tbl.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+
+
 
             //tbl.setFillsViewportHeight(true);
             //tbl.setPreferredScrollableViewportSize(new Dimension(500,600));
 
 
-            JScrollPane scrPane = new JScrollPane(container                  );
+            JScrollPane scrPane = new JScrollPane(container);
+
             frame.add(scrPane);
 
             JScrollPane scrollPane1 = new JScrollPane(tbl);
+            scrollPane1.add(Box.createRigidArea(new Dimension(5,0)));
             container.add(scrollPane1);
+
+
+
+            frame.add(container);
 
 
         }
