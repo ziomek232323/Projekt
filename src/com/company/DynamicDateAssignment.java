@@ -11,7 +11,8 @@ import static javax.swing.ScrollPaneConstants.*;
 
 
 public class DynamicDateAssignment {
-    JTable table;
+    JTable tbl1;
+
     FileManipulation fm = new FileManipulation();
     FixtureGenerating fg = new FixtureGenerating();
 
@@ -37,92 +38,98 @@ public class DynamicDateAssignment {
         JPanel basePanel = new JPanel();
         JPanel container = new JPanel();
         container.setLayout(new GridLayout(4,2));
-        //container.setLayout(new FlowLayout());
-        /*
-        JComboBox cb = new JComboBox();
-        BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
-        String lines;
-        int count = 0;
-        ArrayList<String> matches = new ArrayList<>();
-        while ((lines = bd.readLine()) != null) {
-            matches.add(lines);
-            count++;
-        }
-        if(matches.size()==0)
-            JOptionPane.showMessageDialog(null,"Please Generate a Schedule First.");
-
-        Object [][] fixturess = new Object[count][2];
 
 
 
-        int roundCount =1;
-        fixturess[0][0] = ("Round "+(roundCount) + "\n\n");
-        for (int r=1; r<matches.size(); r++) {
-            fixturess[r][0]= matches.get(r);
-            if(r !=1){
-                if(r % (10) == 0){
-                    fixturess[r][0]=("Round "+(roundCount+1) + "\n\n");
-                    roundCount++;
-                }}
-
-        }
 
 
-        String[] columns = {"Fixtures", "Slots"};
-
-
-        table = new JTable(fixturess,columns);
-        table.setFillsViewportHeight(true);
-        table.setPreferredScrollableViewportSize(new Dimension(500,600));
+/*
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
         //Populating the comboBox with slots
         List<String> dates = fm.getDatesList();
         cb.setModel(new DefaultComboBoxModel<>(dates.toArray()));
-        */
+
+*/
 
 
 
 
-        for (int i = 0; i < 20; ++i)
-        {
             Object[] column = {"Fixture", "Slots"};
-            Object[][] data = {{"One", "Two"}, {"Three", "Four"}, {"Five", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Stoke City", "Five"},
-                    {"Manchester United", "Stoke City"}, {"Three", "AFC Bournemouth          "}, {"Five", "Five"},
-                    {"Manchester United", "Two"}, {"Three", "AFC Bournemouth          "}, {"Five", "Stoke City"}};
+            JComboBox cb = new JComboBox();
+            BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
+            String lines;
+            int count = 0;
+            ArrayList<String> matches = new ArrayList<>();
+            while ((lines = bd.readLine()) != null) {
+                matches.add(lines);
+                count++;
+            }
+            if(matches.size()==0)
+                JOptionPane.showMessageDialog(null,"Please Generate a Schedule First.");
 
-            JTable tbl = new JTable(data,column);
-            tbl.setBorder(BorderFactory.createLineBorder(Color.RED,3));
+            Object [][] fixturess = new Object[count][2];
 
 
 
-            //tbl.setFillsViewportHeight(true);
-            //tbl.setPreferredScrollableViewportSize(new Dimension(500,600));
-
-
-            JScrollPane scrPane = new JScrollPane(container);
-
-            frame.add(scrPane);
-
-            JScrollPane scrollPane1 = new JScrollPane(tbl);
-            scrollPane1.add(Box.createRigidArea(new Dimension(5,0)));
-            container.add(scrollPane1);
 
 
 
-            frame.add(container);
+            for(int i = 0;i<15;i++) {
+
+                int roundCount = 1;
+                fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
 
 
-        }
+                for (int r = 1; r < matches.size(); r++) {
+                    fixturess[r][0] = matches.get(r);
+
+                    if (r != 1) {
+                        if (r % (10) == 0) {
+
+                            fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
+                            roundCount++;
+
+
+
+
+                        }
+
+
+                    }
+
+                }
+
+                tbl1 = new JTable(fixturess, column);
+                tbl1.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                JScrollPane scrPane = new JScrollPane(container);
+                frame.add(scrPane);
+                JScrollPane scrollPane1 = new JScrollPane(tbl1);
+                scrollPane1.add(Box.createRigidArea(new Dimension(5, 0)));
+                container.add(scrollPane1);
+                frame.add(container);
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
