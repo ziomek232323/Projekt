@@ -13,20 +13,16 @@ public class ManualDateAssignFrame {
     JTable table;
     FileManipulation fm = new FileManipulation();
 
-    Object [][] tests;
-
-
-
 
     public void createAndShowUI() throws IOException {
         JFrame frame = new JFrame("Test");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(600,800);
+        frame.setSize(600, 800);
         initComponents(frame);
         frame.setVisible(true);
     }
 
-    private void initComponents(final JFrame frame)throws IOException {
+    private void initComponents(final JFrame frame) throws IOException {
 
         final JPanel panel = new JPanel();
         JComboBox cb = new JComboBox();
@@ -38,22 +34,22 @@ public class ManualDateAssignFrame {
             matches.add(lines);
             count++;
         }
-        if(matches.size()==0)
-        JOptionPane.showMessageDialog(null,"Please Generate a Schedule First.");
+        if (matches.size() == 0)
+            JOptionPane.showMessageDialog(null, "Please Generate a Schedule First.");
 
-        Object [][] fixturess = new Object[count][2];
+        Object[][] fixturess = new Object[count][2];
 
 
-
-        int roundCount =1;
-        fixturess[0][0] = ("Round "+(roundCount) + "\n\n");
-        for (int r=1; r<matches.size(); r++) {
-              fixturess[r][0]= matches.get(r);
-            if(r !=1){
-                if(r % (10) == 0){
-                    fixturess[r][0]=("Round "+(roundCount+1) + "\n\n");
+        int roundCount = 1;
+        fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
+        for (int r = 1; r < matches.size(); r++) {
+            fixturess[r][0] = matches.get(r);
+            if (r != 1) {
+                if (r % (10) == 0) {
+                    fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
                     roundCount++;
-                }}
+                }
+            }
 
         }
 
@@ -61,9 +57,9 @@ public class ManualDateAssignFrame {
         String[] columns = {"Fixtures", "Slots"};
 
 
-        table = new JTable(fixturess,columns);
+        table = new JTable(fixturess, columns);
         table.setFillsViewportHeight(true);
-        table.setPreferredScrollableViewportSize(new Dimension(500,600));
+        table.setPreferredScrollableViewportSize(new Dimension(500, 600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
         //Populating the comboBox with slots
         List<String> dates = fm.getDatesList();
@@ -74,7 +70,45 @@ public class ManualDateAssignFrame {
         frame.add(panel);
 
 
+        PopulateComboBoxWithSlots(fixturess, dates, matches);
+    }
+
+    public void PopulateComboBoxWithSlots(Object fixtureList[][], List<String> listOfSlots, ArrayList<String> listOfMatches) {
+        String reusableSlots = "";
+        String test;
+        int reusableSlotsinINTS = 0;
+        int itterator = 0;
+        int Counter = listOfSlots.size();
+        System.out.print("size of counter" + Counter);
 
 
+        for (int r = 1; r < listOfMatches.size();r++) {
+            if (itterator == Counter) {
+                itterator = 0;
+            }
+
+            reusableSlots = listOfSlots.get(itterator);
+             test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
+
+            reusableSlotsinINTS = Integer.parseInt(test);
+            System.out.println("reusableslotsin intsssss = " + reusableSlotsinINTS);
+
+            for(int i=0;i<reusableSlotsinINTS;i++) {
+                fixtureList[r][1] = listOfSlots.get(itterator);
+
+            }
+
+
+
+            itterator++;
+            if (r != 1) {
+                if (r % (10) == 0) {
+                    fixtureList[r][1] = ("Reset count");
+                    itterator = 0;//reset slot counter each round
+                }
+            }
+
+
+        }
     }
 }
