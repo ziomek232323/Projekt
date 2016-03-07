@@ -24,7 +24,8 @@ public class ManualDateAssignFrame {
     }
 
     private void initComponents(final JFrame frame) throws IOException {
-
+        FileManipulation fm = new FileManipulation();
+        int matchesPerRound;
         final JPanel panel = new JPanel();
         JComboBox cb = new JComboBox();
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
@@ -40,14 +41,17 @@ public class ManualDateAssignFrame {
 
         Object[][] fixturess = new Object[count][2];
 
-
+        matchesPerRound = fm.NumberOfTeams()/2;
         int roundCount = 1;
         fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
         for (int r = 1; r < matches.size(); r++) {
             fixturess[r][0] = matches.get(r);
+            System.out.println(matches.get(r-1));
             if (r != 1) {
-                if (r % (10) == 0) {
+                if (r % (matchesPerRound) == 0) {
+                    System.out.println("************************");
                     fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
+
                     roundCount++;
                 }
             }
@@ -161,10 +165,10 @@ public class ManualDateAssignFrame {
                 tempList.add(listOfMatches.get(r));
                 if (r != 1) {
                     if (r % (10) == 0) {
-                        for (int x =0;x<tempList.size();x++) {
-                            System.out.println(tempList.get(x));
-                        }
-                        System.out.println("****************************************");
+                       // for (int x =0;x<tempList.size();x++) {
+                       //     System.out.println(tempList.get(x));
+                       // }
+                       // System.out.println("****************************************");
 
                         /*
                         for (int x =0;x<tempList.size();x++) {
@@ -182,7 +186,7 @@ public class ManualDateAssignFrame {
                         */
 
                       //  System.out.println("Clearing tempList **************");
-                       tempList.clear();
+                      // tempList.clear();
                         fixtureList[r][0] = ("Round " + (roundCount + 1) + "\n\n");
                         roundCount++;
 
