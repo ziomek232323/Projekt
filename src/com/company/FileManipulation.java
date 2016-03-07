@@ -10,6 +10,7 @@ import java.util.List;
 public class FileManipulation {
     private List<String> dates;
     private List<String> teams;
+    private ArrayList<String> derbyFixtures;
 
     public void readDatesFile() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("./src/dates.txt"));
@@ -66,6 +67,22 @@ public class FileManipulation {
     public List<String> getTeamsList(){
 
         return this.teams;
+    }
+
+    public ArrayList<String> getDerbyMatches(){
+        return this.derbyFixtures;
+    }
+
+    public void setDerbyMatches()throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("./src/derby.txt"));
+        String line;
+        ArrayList<String> derbyList = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            derbyList.add(line);
+        }
+        br.close();
+        derbyFixtures = derbyList;
+
     }
 
 
