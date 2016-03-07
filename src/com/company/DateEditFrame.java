@@ -153,11 +153,11 @@ public class DateEditFrame {
                     public void actionPerformed(ActionEvent r) {
                         ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
                         //String tempPath = dt.GetDateFilePath();
-                        //DynamicDateAssignment dda = new DynamicDateAssignment();
+                        DynamicDateAssignment dda = new DynamicDateAssignment();
                         frame.dispose();
                         try {
                             mdaf.createAndShowUI();
-                            //dda.createAndShowUI();
+                           // dda.createAndShowUI();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

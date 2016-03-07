@@ -81,7 +81,7 @@ public class DynamicDateAssignment {
 
 
                 for (int r = 1; r < matches.size(); r++) {
-                    fixturess[r][0] = matches.get(r);
+                    fixturess[r][0] = matches.get(r-1);
 
                     if (r != 1) {
                         if (r % (10) == 0) {

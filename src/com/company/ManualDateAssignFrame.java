@@ -12,6 +12,7 @@ import java.util.List;
 public class ManualDateAssignFrame {
     JTable table;
     ArrayList<String> derbyMatches;
+    int matchesPerRound;
     FileManipulation fm = new FileManipulation();
 
 
@@ -25,7 +26,6 @@ public class ManualDateAssignFrame {
 
     private void initComponents(final JFrame frame) throws IOException {
         FileManipulation fm = new FileManipulation();
-        int matchesPerRound;
         final JPanel panel = new JPanel();
         JComboBox cb = new JComboBox();
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
@@ -38,19 +38,26 @@ public class ManualDateAssignFrame {
         }
         if (matches.size() == 0)
             JOptionPane.showMessageDialog(null, "Please Generate a Schedule First.");
-
-        Object[][] fixturess = new Object[count][2];
-
         matchesPerRound = fm.NumberOfTeams()/2;
+
+
+       /***************************************************************************/
+
+        Object[][] fixturess = new Object[count + ((matchesPerRound*2)-1)][2];
+
+
         int roundCount = 1;
+
         fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
         for (int r = 1; r < matches.size(); r++) {
-            fixturess[r][0] = matches.get(r);
+
+            fixturess[r][0] = matches.get(r-1);
             System.out.println(matches.get(r-1));
             if (r != 1) {
-                if (r % (matchesPerRound) == 0) {
+                if (r  % (matchesPerRound +1 ) == 0) {
                     System.out.println("************************");
                     fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
+
 
                     roundCount++;
                 }
@@ -59,6 +66,10 @@ public class ManualDateAssignFrame {
         }
 
 
+
+
+
+/***********************************************************************************/
         String[] columns = {"Fixtures", "Slots"};
 
 
@@ -96,7 +107,7 @@ public class ManualDateAssignFrame {
              test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
 
             reusableSlotsinINTS = Integer.parseInt(test);
-            //System.out.println("reusableslotsin intsssss = " + reusableSlotsinINTS);
+
 
             for(int i=0;i<reusableSlotsinINTS;i++) {
                 fixtureList[r][1] = listOfSlots.get(itterator);
@@ -107,7 +118,7 @@ public class ManualDateAssignFrame {
 
             itterator++;
             if (r != 1) {
-                if (r % (10) == 0) {
+                if (r % (matchesPerRound+1) == 0) {
                     fixtureList[r][1] = ("Reset count");
                     itterator = 0;//reset slot counter each round
                 }
@@ -154,23 +165,26 @@ public class ManualDateAssignFrame {
                 else{
                     //System.out.println("No teams matched");
                 }
-            }*/
+            }
+
+
 
             int roundCount = 1;
             int comparisonCounter = 0;
             ArrayList<String> tempList = new ArrayList<>();
             fixtureList[0][0] = ("Round " + (roundCount) + "\n\n");
             for (int r = 1; r < listOfMatches.size(); r++) {
-                fixtureList[r][0] = listOfMatches.get(r);
-                tempList.add(listOfMatches.get(r));
+                fixtureList[r][0] = listOfMatches.get(r-1);
+                tempList.add(listOfMatches.get(r-1));
+                System.out.println(listOfMatches.get(r-1));
                 if (r != 1) {
-                    if (r % (10) == 0) {
-                       // for (int x =0;x<tempList.size();x++) {
-                       //     System.out.println(tempList.get(x));
-                       // }
-                       // System.out.println("****************************************");
+                    if (r % (matchesPerRound) == 0) {
+                         for (int x =0;x<tempList.size();x++) {
+                             System.out.println(tempList.get(x));
+                         }
+                         System.out.println("****************************************");
 
-                        /*
+
                         for (int x =0;x<tempList.size();x++) {
                             if (temp1.toLowerCase().contains(tempList.get(x).toLowerCase()) || temp2.toLowerCase().contains(tempList.get(x).toLowerCase())) {
                                 System.out.println(tempList.get(x));
@@ -183,10 +197,10 @@ public class ManualDateAssignFrame {
 
 
                         }
-                        */
 
-                      //  System.out.println("Clearing tempList **************");
-                      // tempList.clear();
+
+                        System.out.println(" **************");
+                         tempList.clear();
                         fixtureList[r][0] = ("Round " + (roundCount + 1) + "\n\n");
                         roundCount++;
 
@@ -194,6 +208,7 @@ public class ManualDateAssignFrame {
                 }
 
             }
+        */
 
 
 
