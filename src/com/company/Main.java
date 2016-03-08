@@ -8,6 +8,10 @@ public class Main {
         mf.selectOption();
 
 
+        //test ex = new test();
+       // ex.setVisible(true);
+
+
     }
 
 }

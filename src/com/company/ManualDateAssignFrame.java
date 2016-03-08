@@ -1,6 +1,10 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -78,10 +82,37 @@ public class ManualDateAssignFrame {
         String[] columns = {"Fixtures", "Slots"};
 
 
-        table = new JTable(fixturess, columns);
+        table = new JTable(fixturess,columns);
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500, 600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
+
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+
+                String status = (String)table.getModel().getValueAt(8, 0);
+
+
+                if ("Liverpool v Manchester City;".contains(status)) {
+                    //table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                    //System.out.println(status + "********************************");
+                   // c.setBackground(Color.RED);
+                   // model.setRowColour(8, Color.YELLOW);
+                   // setBackground(Color.BLACK);
+                   // setForeground(Color.WHITE);
+                } else {
+                    c.setBackground(Color.WHITE);
+                }
+                return this;
+            }
+        });
+
+
+
         //Populating the comboBox with slots
         List<String> dates = fm.getDatesList();
         cb.setModel(new DefaultComboBoxModel<>(dates.toArray()));
@@ -156,6 +187,12 @@ public class ManualDateAssignFrame {
             seperatedTemp = temp1.split("vs");
             temp1 = seperatedTemp[0];
             temp2 = seperatedTemp[1];
+
+
+
+
+
+
             //System.out.println(derbyMatches.get(i));
             //System.out.println(temp1 + "********************" + temp2);
 
