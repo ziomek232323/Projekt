@@ -39,7 +39,7 @@ public class ManualDateAssignFrame {
         if (matches.size() == 0)
             JOptionPane.showMessageDialog(null, "Please Generate a Schedule First.");
         matchesPerRound = fm.NumberOfTeams()/2;
-
+        int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
 
        /***************************************************************************/
 
@@ -47,22 +47,27 @@ public class ManualDateAssignFrame {
 
 
         int roundCount = 1;
-
+        int x = 0;
         fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
-        for (int r = 1; r < matches.size(); r++) {
+        for (int r = 1; r < sizeOfFixturess; r++) {
+            if(x==matches.size()){
+                break;
+            }
+            fixturess[r][0] = matches.get(x);
+            System.out.println(matches.get(x));
 
-            fixturess[r][0] = matches.get(r-1);
-            System.out.println(matches.get(r-1));
             if (r != 1) {
-                if (r  % (matchesPerRound +1 ) == 0) {
-                    System.out.println("************************");
-                    fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
+                if (r  % (matchesPerRound+2) == 0) {
+                        System.out.println("************************");
+                        fixturess[x][0] = ("Round " + (roundCount + 1) + "\n\n");
 
 
-                    roundCount++;
+                        roundCount++;
                 }
             }
 
+
+            x++;
         }
 
 
