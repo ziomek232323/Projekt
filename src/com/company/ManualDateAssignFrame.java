@@ -109,14 +109,14 @@ public class ManualDateAssignFrame {
             }
 
             reusableSlots = listOfSlots.get(itterator);
-             test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
 
+            test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
             reusableSlotsinINTS = Integer.parseInt(test);
 
 
             for(int i=0;i<reusableSlotsinINTS;i++) {
-                fixtureList[r][1] = listOfSlots.get(itterator);
-
+                fixtureList[r][1] = reusableSlots;
+                r++;
             }
 
 
