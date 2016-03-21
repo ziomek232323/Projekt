@@ -52,26 +52,40 @@ public class ManualDateAssignFrame {
 
         int roundCount = 1;
         int x = 0;
+        int y = 0;
+        int z = 0;
         fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
-        for (int r = 1; r < sizeOfFixturess; r++) {
-            if(x==matches.size()){
-                break;
+        for(int i = 0 ; i < sizeOfFixturess - count;i++) {//round count
+            z++;
+            for (int r = 0; r < matchesPerRound ; r++) {//matches per round
+
+
+                fixturess[z][0] = matches.get(x);
+                System.out.println(matches.get(x));
+
+
+                   // if (r % (matchesPerRound) == 0) {
+                   //     System.out.println("************************");
+                       // fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
+
+
+                    //    roundCount++;
+                   // }
+
+
+                x++;
+                z++;
+                y = x+1;
             }
-            fixturess[r][0] = matches.get(x);
-            System.out.println(matches.get(x));
-
-            if (r != 1) {
-                if (r  % (matchesPerRound+2) == 0) {
-                        System.out.println("************************");
-                        fixturess[x][0] = ("Round " + (roundCount + 1) + "\n\n");
-
-
-                        roundCount++;
+            roundCount++;
+                if(roundCount == (sizeOfFixturess - count)+1){
+                    break;
                 }
-            }
+                fixturess[z][0] = ("Round " + (roundCount) + "\n\n");
 
 
-            x++;
+
+
         }
 
 
