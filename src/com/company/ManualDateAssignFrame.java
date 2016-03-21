@@ -52,7 +52,6 @@ public class ManualDateAssignFrame {
 
         int roundCount = 1;
         int x = 0;
-        int y = 0;
         int z = 0;
         fixturess[0][0] = ("Round " + (roundCount) + "\n\n");
         for(int i = 0 ; i < sizeOfFixturess - count;i++) {//round count
@@ -64,24 +63,15 @@ public class ManualDateAssignFrame {
                 System.out.println(matches.get(x));
 
 
-                   // if (r % (matchesPerRound) == 0) {
-                   //     System.out.println("************************");
-                       // fixturess[r][0] = ("Round " + (roundCount + 1) + "\n\n");
-
-
-                    //    roundCount++;
-                   // }
-
 
                 x++;
                 z++;
-                y = x+1;
             }
             roundCount++;
-                if(roundCount == (sizeOfFixturess - count)+1){
-                    break;
-                }
-                fixturess[z][0] = ("Round " + (roundCount) + "\n\n");
+            if(roundCount == (sizeOfFixturess - count)+1){
+                break;
+            }
+            fixturess[z][0] = ("Round " + (roundCount) + "\n\n");
 
 
 
@@ -136,20 +126,73 @@ public class ManualDateAssignFrame {
         frame.add(panel);
 
 
-        PopulateComboBoxWithSlots(fixturess, dates, matches);
+        PopulateComboBoxWithSlots(fixturess, dates, matches, sizeOfFixturess, count);
     }
-
-    public void PopulateComboBoxWithSlots(Object fixtureList[][], List<String> listOfSlots, ArrayList<String> listOfMatches) throws IOException {
+    public String  getReusableSlot(List<String> listOfSlots, int value){
         String reusableSlots = "";
         String test;
         int reusableSlotsinINTS = 0;
+
+        int Counter = listOfSlots.size();
+
+        if(value == Counter)
+        {
+            value = 0;
+        }
+
+        reusableSlots = listOfSlots.get(value);
+
+        test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
+        reusableSlotsinINTS = Integer.parseInt(test);
+
+        return reusableSlots;
+
+
+    }
+
+    public int  getReusableSlotinInts(List<String> listOfSlots){
+        String reusableSlots = "";
+        String test;
+        int reusableSlotsinINTS = 1;
+         int itterator = 0;
+        int Counter = listOfSlots.size();
+
+        if(itterator == Counter)
+        {
+            itterator = 0;
+        }
+
+        reusableSlots = listOfSlots.get(itterator);
+
+        test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
+        reusableSlotsinINTS = Integer.parseInt(test);
+
+        return reusableSlotsinINTS;
+
+
+    }
+
+    public void PopulateComboBoxWithSlots(Object fixtureList[][], List<String> listOfSlots, ArrayList<String> listOfMatches, int numberOfFixtures, int counter) throws IOException {
+        String reusableSlots = "";
+        String test;
+        int reusableSlotsinINTS = 1;
         int itterator = 0;
         int Counter = listOfSlots.size();
-        //System.out.print("size of counter" + Counter);
 
 
-        for (int r = 1; r < listOfMatches.size();r++) {
-            if (itterator == Counter) {
+
+
+
+
+        int roundCount = 1;
+        int x = 0;
+        int z = 0;
+        fixtureList[0][1] = ("Round " + (roundCount) + "\n\n");
+        for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
+            z++;
+
+            if(itterator == Counter)
+            {
                 itterator = 0;
             }
 
@@ -159,23 +202,55 @@ public class ManualDateAssignFrame {
             reusableSlotsinINTS = Integer.parseInt(test);
 
 
-            for(int i=0;i<reusableSlotsinINTS;i++) {
-                fixtureList[r][1] = reusableSlots;
-                r++;
+
+            for (int r = 0; r < matchesPerRound ; r++) {//matches per round
+
+
+
+
+
+
+
+                fixtureList[z][1] = reusableSlots;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                z++;
             }
+            roundCount++;
+            itterator ++;
+            if(roundCount == (numberOfFixtures - counter)+1){
+                break;
+           }
+            fixtureList[z][1] = ("Round " + (roundCount) + "\n\n");
 
 
-
-            itterator++;
-            if (r != 1) {
-                if (r % (matchesPerRound+1) == 0) {
-                    fixtureList[r][1] = ("Reset count");
-                    itterator = 0;//reset slot counter each round
-                }
-            }
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
         try {
             HighlightDerbyMatches(fixtureList, listOfMatches);
         } catch (IOException e) {
