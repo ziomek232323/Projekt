@@ -175,7 +175,7 @@ public class ManualDateAssignFrame {
     public void PopulateComboBoxWithSlots(Object fixtureList[][], List<String> listOfSlots, ArrayList<String> listOfMatches, int numberOfFixtures, int counter) throws IOException {
         String reusableSlots = "";
         String test;
-        int reusableSlotsinINTS = 1;
+        int reusableSlotsinINTS = 0;
         int itterator = 0;
         int Counter = listOfSlots.size();
 
@@ -187,6 +187,7 @@ public class ManualDateAssignFrame {
         int roundCount = 1;
         int x = 0;
         int z = 0;
+        int p = 0;
         fixtureList[0][1] = ("Round " + (roundCount) + "\n\n");
         for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
             z++;
@@ -205,22 +206,21 @@ public class ManualDateAssignFrame {
 
             for (int r = 0; r < matchesPerRound ; r++) {//matches per round
 
+            p = itterator;
 
 
 
 
 
+                if(reusableSlotsinINTS == x){
+                    p=p +1;
+                    if(p == listOfSlots.size() || p >listOfSlots.size()){
+                        p = 0;
+                    }
+                    reusableSlots = listOfSlots.get(p);
+                }
 
-                fixtureList[z][1] = reusableSlots;
-
-
-
-
-
-
-
-
-
+                    fixtureList[z][1] = reusableSlots;
 
 
 
@@ -228,9 +228,17 @@ public class ManualDateAssignFrame {
 
 
                 z++;
+                x++;
+
+                if(x == matchesPerRound)
+                {
+                    x = 0;
+                }
+
             }
             roundCount++;
-            itterator ++;
+
+           itterator ++;
             if(roundCount == (numberOfFixtures - counter)+1){
                 break;
            }
