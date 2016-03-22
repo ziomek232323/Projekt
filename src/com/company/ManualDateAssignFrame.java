@@ -92,27 +92,34 @@ public class ManualDateAssignFrame {
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
 
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            @Override
+
+
             public Component getTableCellRendererComponent(JTable table,
                                                            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
 
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
 
-                String status = (String)table.getModel().getValueAt(8, 0);
+                    String status = (String) table.getModel().getValueAt(row, col);
 
 
-                if ("Liverpool v Manchester City;".contains(status)) {
-                    //table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                    //System.out.println(status + "********************************");
-                   // c.setBackground(Color.RED);
-                   // model.setRowColour(8, Color.YELLOW);
-                   // setBackground(Color.BLACK);
-                   // setForeground(Color.WHITE);
-                } else {
-                    c.setBackground(Color.WHITE);
+                    if (status.equalsIgnoreCase("Liverpool v Newcastle United;")) {
+                        //table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+                        //System.out.println(status + "********************************");
+                        //set to red bold font
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+                    } else  {
+                        //stay at default
+                        c.setForeground(Color.BLACK);
+                        c.setFont(new Font("Dialog", Font.PLAIN, 12));
+                    }
+
+
+
+
+                    return this;
                 }
-                return this;
-            }
+
         });
 
 
@@ -290,74 +297,8 @@ public class ManualDateAssignFrame {
 
 
 
-            //System.out.println(derbyMatches.get(i));
-            //System.out.println(temp1 + "********************" + temp2);
-
-            /*
-            int counter = 0;
-            for(int x = 0; x <listOfMatches.size() ;x++){
-                if(temp1 == fixtureList[x][0] && temp2 == fixtureList[x + 1][0]){
-                    table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                    System.out.println("Derby Teams matched " + counter);
-                    counter++;
-                }
-                else{
-                    //System.out.println("No teams matched");
-                }
-            }
-
-
-
-            int roundCount = 1;
-            int comparisonCounter = 0;
-            ArrayList<String> tempList = new ArrayList<>();
-            fixtureList[0][0] = ("Round " + (roundCount) + "\n\n");
-            for (int r = 1; r < listOfMatches.size(); r++) {
-                fixtureList[r][0] = listOfMatches.get(r-1);
-                tempList.add(listOfMatches.get(r-1));
-                System.out.println(listOfMatches.get(r-1));
-                if (r != 1) {
-                    if (r % (matchesPerRound) == 0) {
-                         for (int x =0;x<tempList.size();x++) {
-                             System.out.println(tempList.get(x));
-                         }
-                         System.out.println("****************************************");
-
-
-                        for (int x =0;x<tempList.size();x++) {
-                            if (temp1.toLowerCase().contains(tempList.get(x).toLowerCase()) || temp2.toLowerCase().contains(tempList.get(x).toLowerCase())) {
-                                System.out.println(tempList.get(x));
-                                comparisonCounter++;
-                            }
-                            if (comparisonCounter > 0) {
-                                table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                                System.out.println("Derby Teams matched ");
-                            }
-
-
-                        }
-
-
-                        System.out.println(" **************");
-                         tempList.clear();
-                        fixtureList[r][0] = ("Round " + (roundCount + 1) + "\n\n");
-                        roundCount++;
-
-                    }
-                }
-
-            }
-        */
-
-
-
-
-
-
-
-
-
-
+            System.out.println(derbyMatches.get(i));
+            System.out.println(temp1 + "********************" + temp2);
 
 
 
