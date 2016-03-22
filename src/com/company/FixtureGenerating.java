@@ -10,7 +10,7 @@ public class FixtureGenerating {
     private String[][] fixtures;
     String[][] revisedFixtures;
     String[] elementsOfFixture;
-    String fixtureAsText;
+    public String fixtureAsText,filePath = "";
     public int datesRequired = 0;
     private List<String> lists;
     FileManipulation fm = new FileManipulation();
@@ -18,12 +18,16 @@ public class FixtureGenerating {
     private int homeTeamNum, awayTeamNumber,roundNum, matchNumber;
 
 
-    public void GenerateFixture() throws IOException{
+    public void setFilePath(String fp){
+        this.filePath = fp;
 
 
+    }
+
+    public void GenerateFixture(String filePath) throws IOException{
 
 
-        BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         String line;
         int count = 0;
         List<String> temps = new ArrayList<>();
@@ -190,6 +194,7 @@ public class FixtureGenerating {
         mf.DisplayScheduleWithDates(list, matchesPerRound);
 
     }
+
 
 
 

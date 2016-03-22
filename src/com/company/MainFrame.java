@@ -24,7 +24,7 @@ public class MainFrame {
     private JButton showFileDialogButton;
     private JTextArea displayFixtureArea;
     private JButton editDateButton;
-    private String filePath = "";
+    public String filePath = "";
 
     public void prepareGUI() {
         mainFrame = new JFrame("Sports Scheduler");
@@ -99,6 +99,8 @@ public class MainFrame {
                     java.io.File file = fileDialog.getSelectedFile();
                     statusLabel.setText(file.getPath());
                     filePath = statusLabel.getText();
+                    setFilePath(filePath);
+                    System.out.println(filePath);
                     try {
                         displayList();
                     } catch (IOException e) {
@@ -145,7 +147,7 @@ public class MainFrame {
             public void actionPerformed(ActionEvent z) {
 
 
-                try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("./src/testing.txt", true)))) {
+                try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
                     out.println(getEditTeamList());
                     out.close();
 
@@ -197,7 +199,7 @@ public class MainFrame {
         displayFixtureArea.setText(null);
 
         FixtureGenerating fg = new FixtureGenerating();
-        fg.GenerateFixture();
+        fg.GenerateFixture(filePath);
         fg.Convert2dTOArrayList();
         lists = fg.getFixture();
 
@@ -253,9 +255,13 @@ public class MainFrame {
         }
     }
 
-
-
-    public String getFilePath(){
-        return filePath;
+    public void setFilePath(String fp){
+        System.out.println("fp = " + fp);
+        filePath=fp;
+        FixtureGenerating fg = new FixtureGenerating();
+        fg.setFilePath(filePath);
+        System.out.println("setFilePath = " +filePath);
     }
+
+
 }

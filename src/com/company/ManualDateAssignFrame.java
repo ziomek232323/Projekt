@@ -60,7 +60,7 @@ public class ManualDateAssignFrame {
 
 
                 fixturess[z][0] = matches.get(x);
-                System.out.println(matches.get(x));
+                //System.out.println(matches.get(x));
 
 
 
