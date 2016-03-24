@@ -46,6 +46,7 @@ public class ManualDateAssignFrame {
         JScrollPane derbyListScroll = new JScrollPane(derbyList);
         derbyListScroll.setBorder(BorderFactory.createTitledBorder("Conflicting Team List"));
 
+
         JButton derbyButton = new JButton("Highlight Conflicting Fixtures");
         JButton findDerbyListButton = new JButton("Select List");
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
@@ -214,6 +215,7 @@ public class ManualDateAssignFrame {
     }
 
     public void DisplayDerbyList() throws IOException {
+        derbyList.setText("");
         BufferedReader br = new BufferedReader(new FileReader(derbyFilePath));
         String line;
 
@@ -378,10 +380,12 @@ public class ManualDateAssignFrame {
                     c.setForeground(Color.RED);
                     c.setFont(new Font("Dialog", Font.BOLD, 14));
 
+
                 } else {
 
                     c.setForeground(Color.BLACK);
                     c.setFont(new Font("Dialog", Font.PLAIN, 12));
+
 
                 }
 
@@ -390,9 +394,12 @@ public class ManualDateAssignFrame {
 
 
                 return this;
+
             }
 
+
         });
+           table.repaint();
 
        }
         else{
