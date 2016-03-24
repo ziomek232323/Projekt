@@ -1,12 +1,16 @@
 package com.company;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -18,12 +22,15 @@ public class ManualDateAssignFrame {
     ArrayList<String> derbyMatches;
     int matchesPerRound;
     FileManipulation fm = new FileManipulation();
+    public JTextArea derbyList;
+    private String derbyFilePath ="";
+    boolean isPressed = false;
 
 
     public void createAndShowUI() throws IOException {
         JFrame frame = new JFrame("Test");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(600, 800);
+        frame.setSize(1000, 800);
         initComponents(frame);
         frame.setVisible(true);
     }
@@ -31,8 +38,19 @@ public class ManualDateAssignFrame {
     private void initComponents(final JFrame frame) throws IOException {
         FileManipulation fm = new FileManipulation();
         final JPanel panel = new JPanel();
+        JPanel panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         JComboBox cb = new JComboBox();
+        derbyList = new JTextArea(10, 50);
+        JScrollPane derbyListScroll = new JScrollPane(derbyList);
+        derbyListScroll.setBorder(BorderFactory.createTitledBorder("Conflicting Team List"));
+
+        JButton derbyButton = new JButton("Highlight Conflicting Fixtures");
+        JButton findDerbyListButton = new JButton("Select List");
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
+
+
         String lines;
         int count = 0;
         ArrayList<String> matches = new ArrayList<>();
@@ -90,7 +108,7 @@ public class ManualDateAssignFrame {
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500, 600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
-
+    /*
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 
 
@@ -98,42 +116,116 @@ public class ManualDateAssignFrame {
                                                            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
 
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
                     String status = (String) table.getModel().getValueAt(row, col);
 
 
-                    if (status.equalsIgnoreCase("Liverpool v Newcastle United;")) {
-                        //table.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
-                        //System.out.println(status + "********************************");
-                        //set to red bold font
-                        c.setForeground(Color.RED);
+
+                int x = 1;
+                    if (status.contains("Manchester City")){
+
+
+
+
+                      c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
-                    } else  {
-                        //stay at default
-                        c.setForeground(Color.BLACK);
+
+                    } else {
+
+                       c.setForeground(Color.BLACK);
                         c.setFont(new Font("Dialog", Font.PLAIN, 12));
+
                     }
 
 
 
 
+
                     return this;
-                }
+            }
 
         });
-
+*/
 
 
         //Populating the comboBox with slots
         List<String> dates = fm.getDatesList();
         cb.setModel(new DefaultComboBoxModel<>(dates.toArray()));
 
+
+        /*********************************************************************************************************/ //Adding components to the panel
         JScrollPane scrollPane1 = new JScrollPane(table);
         panel.add(scrollPane1);
+
+        panel1.add(derbyListScroll);
+        panel.add(panel1);
+        panel.add(findDerbyListButton);
+        panel.add(derbyButton);
+
         frame.add(panel);
 
 
+
+        final JFileChooser fileDialog = new JFileChooser("C:");
+        JFrame chooseDerbyFile = new JFrame();
+        findDerbyListButton.addActionListener(new ActionListener() {
+
+
+            @Override
+            public void actionPerformed(ActionEvent r) {
+
+                int returnVal = fileDialog.showOpenDialog(chooseDerbyFile);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    java.io.File file = fileDialog.getSelectedFile();
+                    derbyFilePath = file.getPath();
+
+                    System.out.println(derbyFilePath);
+                    try {
+                        DisplayDerbyList();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+        });
+
+        derbyButton.addActionListener(new ActionListener() {
+
+
+            @Override
+            public void actionPerformed(ActionEvent r) {
+
+
+               try {
+                    isPressed = true;
+                    HighlightDerbyMatches(isPressed);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
+
         PopulateComboBoxWithSlots(fixturess, dates, matches, sizeOfFixturess, count);
+    }
+
+    public void DisplayDerbyList() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(derbyFilePath));
+        String line;
+
+
+        while ((line = br.readLine()) != null) {
+
+            derbyList.append("\n" + line);
+
+
+        }
+        br.close();
+
     }
     public String  getReusableSlot(List<String> listOfSlots, int value){
         String reusableSlots = "";
@@ -199,8 +291,7 @@ public class ManualDateAssignFrame {
         for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
             z++;
 
-            if(itterator == Counter)
-            {
+            if (itterator == Counter) {
                 itterator = 0;
             }
 
@@ -210,70 +301,42 @@ public class ManualDateAssignFrame {
             reusableSlotsinINTS = Integer.parseInt(test);
 
 
+            for (int r = 0; r < matchesPerRound; r++) {//matches per round
 
-            for (int r = 0; r < matchesPerRound ; r++) {//matches per round
-
-            p = itterator;
-
+                p = itterator;
 
 
-
-
-                if(reusableSlotsinINTS == x){
-                    p=p +1;
-                    if(p == listOfSlots.size() || p >listOfSlots.size()){
+                if (reusableSlotsinINTS == x) {
+                    p = p + 1;
+                    if (p == listOfSlots.size() || p > listOfSlots.size()) {
                         p = 0;
                     }
                     reusableSlots = listOfSlots.get(p);
                 }
 
-                    fixtureList[z][1] = reusableSlots;
-
-
-
-
+                fixtureList[z][1] = reusableSlots;
 
 
                 z++;
                 x++;
 
-                if(x == matchesPerRound)
-                {
+                if (x == matchesPerRound) {
                     x = 0;
                 }
 
             }
             roundCount++;
 
-           itterator ++;
-            if(roundCount == (numberOfFixtures - counter)+1){
+            itterator++;
+            if (roundCount == (numberOfFixtures - counter) + 1) {
                 break;
-           }
+            }
             fixtureList[z][1] = ("Round " + (roundCount) + "\n\n");
 
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-        try {
-            HighlightDerbyMatches(fixtureList, listOfMatches);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public void HighlightDerbyMatches(Object[][] fixtureList,ArrayList<String> listOfMatches) throws IOException {
+    public void HighlightDerbyMatches(boolean isPressed) throws IOException {
         FileManipulation fm = new FileManipulation();
         try {
             fm.setDerbyMatches();
@@ -285,23 +348,54 @@ public class ManualDateAssignFrame {
 
         String temp1 = "";
         String temp2 = "";
-        String [] seperatedTemp;
-        for(int i = 0; i < derbyMatches.size();i++){
+        String[] seperatedTemp;
+        for (int i = 0; i < derbyMatches.size(); i++) {
             temp1 = derbyMatches.get(i);
             seperatedTemp = temp1.split("vs");
             temp1 = seperatedTemp[0];
             temp2 = seperatedTemp[1];
+        }
+
+       if (isPressed == true) {
+
+        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+
+
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                String status = (String) table.getModel().getValueAt(row, col);
+
+
+
+                int x = 1;
+                if (status.contains("Manchester City")){
+
+
+
+
+                    c.setForeground(Color.RED);
+                    c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                } else {
+
+                    c.setForeground(Color.BLACK);
+                    c.setFont(new Font("Dialog", Font.PLAIN, 12));
+
+                }
 
 
 
 
 
+                return this;
+            }
 
-            System.out.println(derbyMatches.get(i));
-            System.out.println(temp1 + "********************" + temp2);
+        });
 
-
-
+       }
+        else{
 
         }
     }
