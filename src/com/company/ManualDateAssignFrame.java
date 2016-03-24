@@ -109,31 +109,31 @@ public class ManualDateAssignFrame {
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500, 600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
-    /*
+/*
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 
 
             public Component getTableCellRendererComponent(JTable table,
                                                            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
 
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                Component b = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
                     String status = (String) table.getModel().getValueAt(row, col);
 
 
 
                 int x = 1;
-                    if (status.contains("Manchester City")){
+                    if (status.contains("Round")){
 
 
 
 
-                      c.setForeground(Color.RED);
-                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+                      b.setForeground(Color.BLUE);
+                        b.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     } else {
 
-                       c.setForeground(Color.BLACK);
-                        c.setFont(new Font("Dialog", Font.PLAIN, 12));
+                       b.setForeground(Color.BLACK);
+                        b.setFont(new Font("Dialog", Font.PLAIN, 12));
 
                     }
 
@@ -372,20 +372,22 @@ public class ManualDateAssignFrame {
 
 
                 int x = 1;
-                if (status.contains("Manchester City")){
-
-
+                if (status.contains("Manchester City")) {
 
 
                     c.setForeground(Color.RED);
                     c.setFont(new Font("Dialog", Font.BOLD, 14));
 
+                }
+                else if (status.contains("Round")) {
 
-                } else {
+                    c.setForeground(Color.BLUE);
+                    c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                }else {
 
                     c.setForeground(Color.BLACK);
                     c.setFont(new Font("Dialog", Font.PLAIN, 12));
-
 
                 }
 
@@ -394,6 +396,9 @@ public class ManualDateAssignFrame {
 
 
                 return this;
+
+
+
 
             }
 
