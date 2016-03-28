@@ -65,7 +65,7 @@ public class test extends JFrame {
                         c.setBackground(Color.YELLOW);
                     } else {
                         // If not shaded, match the table's background
-                        c.setBackground(getBackground());
+
                     }
                 }
                 return c;
