@@ -2,6 +2,7 @@ package com.company;
 
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,8 @@ import java.util.*;
 public class CompiledFixturesFrame {
     JTable firstHalfSeason;
     JTable secondHalfSeason;
+    JTable fullSeason;
+    JButton resultsTable;
 
 
 
@@ -25,9 +28,12 @@ public class CompiledFixturesFrame {
         frame.setVisible(true);
     }
 
+
     private void initComponents(final JFrame frame) throws IOException {
         final JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
+        ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
+        resultsTable = new JButton("Show Table");
         String[] columns = {"Fixtures", "Slots"};
         Object[][] rows = new Object[0][];
         panel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -52,10 +58,27 @@ public class CompiledFixturesFrame {
         panel.add(scrollPane1);
         panel1.add(scrollPane12);
         panel.add(panel1);
-
-
-
+        panel.add(resultsTable);
         frame.add(panel);
+
+
+
+        /********************************************************************************************************/ //Overriding button for results table
+          resultsTable.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent r) {
+                ResultsTable rt = new ResultsTable();
+                try {
+                    rt.createAndShowCompiledFixturesFrame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
 
     }
 }

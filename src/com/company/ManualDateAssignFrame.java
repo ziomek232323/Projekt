@@ -1,18 +1,11 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 
@@ -469,8 +462,53 @@ public class ManualDateAssignFrame {
         else{
 
         }
+        saveData(table);
+        saveMatches(table);
+
     }
+    public  void saveData (JTable table1) throws IOException {
+        File file = new File("./src/data.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+        String fileContent="";
+        TableModel tModel = table1.getModel();
+        for (int i = 0; i < tModel.getRowCount(); i++) {
+
+            for (int j = 0; j < tModel.getColumnCount(); j++) {
+                Object cellValue = tModel.getValueAt(i, j);
+                fileContent = cellValue.toString();
+
+            }
+            fileWriter.write(fileContent);
+            fileWriter.write("\n");
+
+        }
+        fileWriter.flush();
+        fileWriter.close();
+    }
+    public  void saveMatches (JTable table1) throws IOException {
+        File file = new File("./src/data2.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+        String fileContent="";
+        TableModel tModel = table1.getModel();
+        for (int i = 0; i < tModel.getRowCount(); i++) {
 
 
+                Object cellValue = tModel.getValueAt(i, 0);
+                fileContent = cellValue.toString();
+
+
+            fileWriter.write(fileContent);
+            fileWriter.write("\n");
+
+        }
+        fileWriter.flush();
+        fileWriter.close();
+    }
 
 }
