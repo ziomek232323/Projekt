@@ -30,7 +30,8 @@ public class ManualDateAssignFrame {
     public void createAndShowUI() throws IOException {
         JFrame frame = new JFrame("Test");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1000, 800);
+        frame.setSize(1000, 700);
+        frame.setResizable(false);
         initComponents(frame);
         frame.setVisible(true);
     }
@@ -39,6 +40,7 @@ public class ManualDateAssignFrame {
         FileManipulation fm = new FileManipulation();
         final JPanel panel = new JPanel();
         JPanel panel1 = new JPanel();
+
         panel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
         panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         JComboBox cb = new JComboBox();
@@ -46,9 +48,10 @@ public class ManualDateAssignFrame {
         JScrollPane derbyListScroll = new JScrollPane(derbyList);
         derbyListScroll.setBorder(BorderFactory.createTitledBorder("Conflicting Team List"));
 
-
+        JButton compileFixtures = new JButton("Compile Fixtures");
         JButton derbyButton = new JButton("Highlight Conflicting Fixtures");
         JButton findDerbyListButton = new JButton("Select List");
+        JTextField input = new JTextField(17);
         BufferedReader bd = new BufferedReader(new FileReader("./src/list.txt"));
 
 
@@ -64,7 +67,7 @@ public class ManualDateAssignFrame {
         matchesPerRound = fm.NumberOfTeams()/2;
         int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
 
-       /***************************************************************************/
+        /***************************************************************************/
 
         Object[][] fixturess = new Object[count + ((matchesPerRound*2)-1)][2];
 
@@ -111,39 +114,20 @@ public class ManualDateAssignFrame {
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
 /*
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-
-
             public Component getTableCellRendererComponent(JTable table,
                                                            Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-
                 Component b = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
                     String status = (String) table.getModel().getValueAt(row, col);
-
-
-
                 int x = 1;
                     if (status.contains("Round")){
-
-
-
-
                       b.setForeground(Color.BLUE);
                         b.setFont(new Font("Dialog", Font.BOLD, 14));
-
                     } else {
-
                        b.setForeground(Color.BLACK);
                         b.setFont(new Font("Dialog", Font.PLAIN, 12));
-
                     }
-
-
-
-
-
                     return this;
             }
-
         });
 */
 
@@ -159,8 +143,11 @@ public class ManualDateAssignFrame {
 
         panel1.add(derbyListScroll);
         panel.add(panel1);
+        panel.add(input);
         panel.add(findDerbyListButton);
         panel.add(derbyButton);
+        panel.add(compileFixtures);
+
 
         frame.add(panel);
 
@@ -198,7 +185,7 @@ public class ManualDateAssignFrame {
             public void actionPerformed(ActionEvent r) {
 
 
-               try {
+                try {
                     isPressed = true;
                     HighlightDerbyMatches(isPressed);
                 } catch (IOException e) {
@@ -255,7 +242,7 @@ public class ManualDateAssignFrame {
         String reusableSlots = "";
         String test;
         int reusableSlotsinINTS = 1;
-         int itterator = 0;
+        int itterator = 0;
         int Counter = listOfSlots.size();
 
         if(itterator == Counter)
@@ -351,62 +338,136 @@ public class ManualDateAssignFrame {
         String temp1 = "";
         String temp2 = "";
         String[] seperatedTemp;
+        ArrayList<String> listOfDerbyMatches = new ArrayList<>();
         for (int i = 0; i < derbyMatches.size(); i++) {
             temp1 = derbyMatches.get(i);
             seperatedTemp = temp1.split("vs");
             temp1 = seperatedTemp[0];
             temp2 = seperatedTemp[1];
+
+
+            listOfDerbyMatches.add(temp1);
+            listOfDerbyMatches.add(temp2);
         }
 
-       if (isPressed == true) {
+        if (isPressed == true) {
 
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-
-
-            public Component getTableCellRendererComponent(JTable table,
-                                                           Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                String status = (String) table.getModel().getValueAt(row, col);
+            table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 
 
+                public Component getTableCellRendererComponent(JTable table,
+                                                               Object value, boolean isSelected, boolean hasFocus, int row, int col) {
 
-                int x = 1;
-                if (status.contains("Manchester City")) {
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                    String status = (String) table.getModel().getValueAt(row, col);
+
+                    int i = 1;
+
+                    if (status.contains(listOfDerbyMatches.get(0))){
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                        System.out.println("in the loop");
+
+                    }
+
+                    else if (status.contains(listOfDerbyMatches.get(1))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }
+                    else if (status.contains(listOfDerbyMatches.get(2))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(3))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(4))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(5))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(6))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(7))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(8))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(9))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(10))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }else if (status.contains(listOfDerbyMatches.get(11))) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.RED);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }
+
+                    else if (status.contains("Round")) {
+
+                        System.out.println("in the RoundLOOP");
+                        c.setForeground(Color.BLUE);
+                        c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    }
+                    else {
+                        System.out.println("in the ELSEBLACKLOOP");
+                        c.setForeground(Color.BLACK);
+                        c.setFont(new Font("Dialog", Font.PLAIN, 12));
+
+                    }
 
 
-                    c.setForeground(Color.RED);
-                    c.setFont(new Font("Dialog", Font.BOLD, 14));
+
+                    return this;
+
 
                 }
-                else if (status.contains("Round")) {
-
-                    c.setForeground(Color.BLUE);
-                    c.setFont(new Font("Dialog", Font.BOLD, 14));
-
-                }else {
-
-                    c.setForeground(Color.BLACK);
-                    c.setFont(new Font("Dialog", Font.PLAIN, 12));
-
-                }
 
 
 
+            });
 
+            table.repaint();
 
-                return this;
-
-
-
-
-            }
-
-
-        });
-           table.repaint();
-
-       }
+        }
         else{
 
         }

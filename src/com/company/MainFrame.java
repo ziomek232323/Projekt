@@ -243,10 +243,10 @@ public class MainFrame {
         displayScheduleWithDates.append("Round "+(roundCount) + "\n\n");
         for(int i = 0; i < list.size(); i++){
             displayScheduleWithDates.append(String.valueOf(list.get(i)));
-            displayScheduleWithDates.append("\n\n ");
+            displayScheduleWithDates.append("\n");
             if(i !=0){
             if(i % (matchesPerRound) == 0){
-                displayScheduleWithDates.append("\n\n\n");
+                displayScheduleWithDates.append("\n\n");
                 displayScheduleWithDates.append("Round "+(roundCount+1) + "\n\n");
                 roundCount++;
             }}
