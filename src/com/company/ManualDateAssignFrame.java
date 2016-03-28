@@ -28,7 +28,7 @@ public class ManualDateAssignFrame {
 
 
     public void createAndShowUI() throws IOException {
-        JFrame frame = new JFrame("Test");
+        JFrame frame = new JFrame("Assign Dates");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1000, 700);
         frame.setResizable(false);
@@ -112,24 +112,7 @@ public class ManualDateAssignFrame {
         table.setFillsViewportHeight(true);
         table.setPreferredScrollableViewportSize(new Dimension(500, 600));
         table.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
-/*
-        table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-            public Component getTableCellRendererComponent(JTable table,
-                                                           Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                Component b = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                    String status = (String) table.getModel().getValueAt(row, col);
-                int x = 1;
-                    if (status.contains("Round")){
-                      b.setForeground(Color.BLUE);
-                        b.setFont(new Font("Dialog", Font.BOLD, 14));
-                    } else {
-                       b.setForeground(Color.BLACK);
-                        b.setFont(new Font("Dialog", Font.PLAIN, 12));
-                    }
-                    return this;
-            }
-        });
-*/
+
 
 
         //Populating the comboBox with slots
@@ -188,6 +171,21 @@ public class ManualDateAssignFrame {
                 try {
                     isPressed = true;
                     HighlightDerbyMatches(isPressed);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        compileFixtures.addActionListener(new ActionListener() {
+
+
+            @Override
+            public void actionPerformed(ActionEvent r) {
+                CompiledFixturesFrame cff = new CompiledFixturesFrame();
+                try {
+                    cff.createAndShowCompiledFixturesFrame();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -367,74 +365,74 @@ public class ManualDateAssignFrame {
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
-                        System.out.println("in the loop");
+
 
                     }
 
                     else if (status.contains(listOfDerbyMatches.get(1))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }
                     else if (status.contains(listOfDerbyMatches.get(2))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(3))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(4))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(5))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(6))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(7))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(8))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(9))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(10))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }else if (status.contains(listOfDerbyMatches.get(11))) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.RED);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
@@ -442,13 +440,13 @@ public class ManualDateAssignFrame {
 
                     else if (status.contains("Round")) {
 
-                        System.out.println("in the RoundLOOP");
+
                         c.setForeground(Color.BLUE);
                         c.setFont(new Font("Dialog", Font.BOLD, 14));
 
                     }
                     else {
-                        System.out.println("in the ELSEBLACKLOOP");
+
                         c.setForeground(Color.BLACK);
                         c.setFont(new Font("Dialog", Font.PLAIN, 12));
 
