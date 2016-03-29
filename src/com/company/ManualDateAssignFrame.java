@@ -18,6 +18,7 @@ public class ManualDateAssignFrame {
     public JTextArea derbyList;
     private String derbyFilePath ="";
     boolean isPressed = false;
+    boolean isSaved = false;
 
 
     public void createAndShowUI() throws IOException {
@@ -178,7 +179,12 @@ public class ManualDateAssignFrame {
             public void actionPerformed(ActionEvent r) {
                 CompiledFixturesFrame cff = new CompiledFixturesFrame();
                 try {
+                    if(isSaved == true){
+                        saveData(table);
+                        saveMatches(table);
+                    }
                     cff.createAndShowCompiledFixturesFrame();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -268,6 +274,9 @@ public class ManualDateAssignFrame {
         int z = 0;
         int p = 0;
         fixtureList[0][1] = ("Round " + (roundCount) + "\n\n");
+        System.out.println("number of fixtures - count " + (numberOfFixtures - counter));
+        System.out.println(" counter " + Counter);
+        System.out.println(" itterator " + itterator);
         for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
             z++;
 
@@ -282,16 +291,25 @@ public class ManualDateAssignFrame {
 
 
             for (int r = 0; r < matchesPerRound; r++) {//matches per round
+                System.out.println(" matches per round " + matchesPerRound);
 
-                p = itterator;
+                   // p = itterator;
 
 
                 if (reusableSlotsinINTS == x) {
-                    p = p + 1;
-                    if (p == listOfSlots.size() || p > listOfSlots.size()) {
-                        p = 0;
+
+                    //p = p + 1;
+                    itterator += 1;
+                    x = 0 ;
+
+                    if (itterator == listOfSlots.size() || itterator > listOfSlots.size()) {
+                        itterator = 0;
                     }
-                    reusableSlots = listOfSlots.get(p);
+
+                    reusableSlots = listOfSlots.get(itterator);
+                    test = reusableSlots.substring(reusableSlots.lastIndexOf(')') + 1);
+                    reusableSlotsinINTS = Integer.parseInt(test);
+
                 }
 
                 fixtureList[z][1] = reusableSlots;
@@ -462,8 +480,8 @@ public class ManualDateAssignFrame {
         else{
 
         }
-        saveData(table);
-        saveMatches(table);
+        isSaved = true;
+
 
     }
     public  void saveData (JTable table1) throws IOException {
