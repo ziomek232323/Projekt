@@ -102,9 +102,6 @@ public class FileManipulation {
         }
         br.close();
 
-//        for(int i =0; i < list.size(); i++){
-//            System.out.println(list.get(i));
-//        }
         return list;
     }
 
@@ -124,9 +121,43 @@ public class FileManipulation {
         }
         br.close();
 
-//        for(int i =0; i < list.size(); i++){
-//            System.out.println(list.get(i));
-//        }
+        return list;
+    }
+
+    public ArrayList<String> readMatchDataforSecondSeason () throws  IOException{
+        File file = new File("./src/data2.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        ArrayList<String> list = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            if(line != "" && !line.contains("Round")) {
+                list.add(line);
+            }
+            list.removeAll(Arrays.asList("", null));
+        }
+        br.close();
+
+        return list;
+    }
+    public ArrayList<String> readSlotsforSecondSeason () throws  IOException{
+        File file = new File("./src/data.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        ArrayList<String> list = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            if(line != "" && !line.contains("Round")) {
+                list.add(line);
+            }
+            list.removeAll(Arrays.asList("", null));
+        }
+        br.close();
+
         return list;
     }
 

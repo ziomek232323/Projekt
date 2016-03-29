@@ -47,7 +47,8 @@ public class CompiledFixturesFrame {
 
 
         FirstSeasonGeneration();
-        SecondHalfSeasonCorrection();
+        SecondHalfSeasonMatchCorrection();
+        SecondHalfSeasonSlotCorrection();
 
         firstHalfSeason = new JTable(firstHalfSeasonFixtures,columns);
         secondHalfSeason = new JTable(secondHalfSeasonFixtures,columns);
@@ -88,6 +89,48 @@ public class CompiledFixturesFrame {
 
 
 
+    }
+
+    private void SecondHalfSeasonSlotCorrection() throws IOException {
+
+        secondHalfSlots = fm.readSlotsforSecondSeason();
+        int matchesPerRound = fm.NumberOfTeams()/2;
+        int count = secondHalfSlots.size();
+        int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
+
+//        int y =0;
+//        for(int j=secondHalfSlots.size() -1;j>=0;j--){
+//            System.out.println(secondHalfSlots.get(j));
+//            secondHalfSeasonFixtures[y][1] = secondHalfSlots.get(j);
+//            y++;
+//        }
+
+        int roundCounts = 1;
+        int s = secondHalfSlots.size()-1;
+        int c = 0;
+
+        secondHalfSeasonFixtures[0][1] = ("Round " + (roundCounts) + "\n\n");
+        for(int i = 0 ; i < sizeOfFixturess - count;i++) {//round count
+            c++;
+            for (int r = matchesPerRound - 1; r >= 0 ; r--) {//matches per round
+
+
+                secondHalfSeasonFixtures[c][1] = secondHalfSlots.get(s);
+                //System.out.println(matches.get(x));
+
+
+
+                s--;
+                c++;
+            }
+            roundCounts++;
+            if(roundCounts == (sizeOfFixturess - count)+1){
+                break;
+            }
+            secondHalfSeasonFixtures[c][1] = ("Round " + (roundCounts) + "\n\n");
+
+
+        }
     }
 
     private void FirstSeasonGeneration() throws IOException {
@@ -173,28 +216,48 @@ public class CompiledFixturesFrame {
         });
     }
 
-    public void SecondHalfSeasonCorrection() throws IOException {
-        secondHalfMatches = fm.readMatchData();
-        secondHalfSeasonFixtures = new Object[secondHalfMatches.size()][2];
+    public void SecondHalfSeasonMatchCorrection() throws IOException {
+        secondHalfMatches = fm.readMatchDataforSecondSeason();
+        int matchesPerRound = fm.NumberOfTeams()/2;
+        int count = secondHalfMatches.size();
+        int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
 
-        int x =0;
-        for(int j=secondHalfMatches.size() -1;j>=0;j--){
-            System.out.println(secondHalfMatches.get(j));
-            secondHalfSeasonFixtures[x][0] = secondHalfMatches.get(j);
-            x++;
+
+//        int x =0;
+//        for(int j=secondHalfMatches.size() -1;j>=0;j--){
+//            System.out.println(secondHalfMatches.get(j));
+//            secondHalfSeasonFixtures[x][0] = secondHalfMatches.get(j);
+//            x++;
+//        }
+
+        int roundCount = 1;
+        int x = secondHalfMatches.size()-1;
+        int z = 0;
+        secondHalfSeasonFixtures = new Object[sizeOfFixturess][2];
+        secondHalfSeasonFixtures[0][0] = ("Round " + (roundCount) + "\n\n");
+        for(int i = 0 ; i < sizeOfFixturess - count;i++) {//round count
+            z++;
+            for (int r = matchesPerRound - 1; r >= 0 ; r--) {//matches per round
+
+
+                secondHalfSeasonFixtures[z][0] = secondHalfMatches.get(x);
+                //System.out.println(matches.get(x));
+
+
+
+                x--;
+                z++;
+            }
+            roundCount++;
+            if(roundCount == (sizeOfFixturess - count)+1){
+                break;
+            }
+            secondHalfSeasonFixtures[z][0] = ("Round " + (roundCount) + "\n\n");
+
+
         }
 
 
-
-
-        secondHalfSlots = fm.readSlotData();
-
-        int y =0;
-        for(int j=secondHalfSlots.size() -1;j>=0;j--){
-            System.out.println(secondHalfSlots.get(j));
-            secondHalfSeasonFixtures[y][1] = secondHalfSlots.get(j);
-            y++;
-        }
 
     }
 }
