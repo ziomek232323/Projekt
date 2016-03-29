@@ -63,7 +63,7 @@ public class ManualDateAssignFrame {
 
         /***************************************************************************/
 
-        Object[][] fixturess = new Object[count + ((matchesPerRound*2)-1)][2];
+        Object[][] fixturess = new Object[sizeOfFixturess][2];
 
 
         int roundCount = 1;
@@ -196,6 +196,7 @@ public class ManualDateAssignFrame {
 
 
         PopulateComboBoxWithSlots(fixturess, dates, matches, sizeOfFixturess, count);
+
     }
 
     public void DisplayDerbyList() throws IOException {
@@ -274,9 +275,9 @@ public class ManualDateAssignFrame {
         int z = 0;
         int p = 0;
         fixtureList[0][1] = ("Round " + (roundCount) + "\n\n");
-        System.out.println("number of fixtures - count " + (numberOfFixtures - counter));
-        System.out.println(" counter " + Counter);
-        System.out.println(" itterator " + itterator);
+       // System.out.println("number of fixtures - count " + (numberOfFixtures - counter));
+       // System.out.println(" counter " + Counter);
+       // System.out.println(" itterator " + itterator);
         for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
             z++;
 
@@ -291,7 +292,7 @@ public class ManualDateAssignFrame {
 
 
             for (int r = 0; r < matchesPerRound; r++) {//matches per round
-                System.out.println(" matches per round " + matchesPerRound);
+               // System.out.println(" matches per round " + matchesPerRound);
 
                    // p = itterator;
 

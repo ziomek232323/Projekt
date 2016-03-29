@@ -2,9 +2,11 @@ package com.company;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileManipulation {
@@ -84,6 +86,48 @@ public class FileManipulation {
         derbyFixtures = derbyList;
 
     }
+    public ArrayList<String> readMatchData () throws  IOException{
+        File file = new File("./src/data2.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        ArrayList<String> list = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            if(line != "") {
+                list.add(line);
+            }
+            list.removeAll(Arrays.asList("", null));
+        }
+        br.close();
 
+//        for(int i =0; i < list.size(); i++){
+//            System.out.println(list.get(i));
+//        }
+        return list;
+    }
+
+    public ArrayList<String> readSlotData() throws  IOException{
+        File file = new File("./src/data.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        ArrayList<String> list = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            if(line != "") {
+                list.add(line);
+            }
+            list.removeAll(Arrays.asList("", null));
+        }
+        br.close();
+
+//        for(int i =0; i < list.size(); i++){
+//            System.out.println(list.get(i));
+//        }
+        return list;
+    }
 
 }
