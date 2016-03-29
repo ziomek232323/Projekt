@@ -64,13 +64,13 @@ public class MainFrame {
         editTeamList.setPreferredSize(new Dimension(20, 20));
         displayTeamListPanel.revalidate();
         mainFrame.setVisible(true);
-        insert = new JButton("Insert");
+        insert = new JButton("Insert Team");
         displayTeamListPanel.add(insert);
-        schedule = new JButton("Schedule");
+        schedule = new JButton("Generate Schedule");
         displayTeamListPanel.add(schedule);
         showFileDialogButton = new JButton("Browse For List");
         displayTeamListPanel.add(showFileDialogButton);
-        editDateButton = new JButton("Edit Date");
+        editDateButton = new JButton("Edit Dates");
         displayTeamListPanel.add(editDateButton);
 
     }
