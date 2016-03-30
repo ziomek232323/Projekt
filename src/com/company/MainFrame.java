@@ -68,7 +68,7 @@ public class MainFrame {
         displayTeamListPanel.add(insert);
         schedule = new JButton("Generate Schedule");
         displayTeamListPanel.add(schedule);
-        showFileDialogButton = new JButton("Browse For List");
+        showFileDialogButton = new JButton("Browse For Team List");
         displayTeamListPanel.add(showFileDialogButton);
         editDateButton = new JButton("Edit Dates");
         displayTeamListPanel.add(editDateButton);
@@ -223,7 +223,7 @@ public class MainFrame {
     }
     public void DisplayScheduleWithDates(ArrayList list, int matchesPerRound)throws IOException{
         JFrame secondFrame = new JFrame("Sports Scheduler");
-        secondFrame.setSize(600, 600);
+        secondFrame.setSize(870, 600);
         secondFrame.setResizable(false);
 
         secondFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -236,7 +236,7 @@ public class MainFrame {
         displayTeamListPanelDates.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
-        JTextArea displayScheduleWithDates = new JTextArea(25, 65);
+        JTextArea displayScheduleWithDates = new JTextArea(25, 100);
         JScrollPane scrollDisplaywithDates = new JScrollPane(displayScheduleWithDates);
         displayScheduleWithDates.setBorder(BorderFactory.createTitledBorder("Fixtures"));
         displayScheduleWithDates.setEditable(false);

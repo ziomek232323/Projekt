@@ -58,10 +58,10 @@ public class FixtureGenerating {
                 if (matchNumber == 0)
                     awayTeamNumber = numberOfTeams - 1;
 
-                fixtures[roundNum][matchNumber] = (homeTeamNum + 1) + " v " + (awayTeamNumber + 1);
+                fixtures[roundNum][matchNumber] = (homeTeamNum + 1) + " vs " + (awayTeamNumber + 1);
                  for (int index = 0; index < count; index++) {
 
-                   fixtures[roundNum][matchNumber] = (temps.get(homeTeamNum)) + " v " + (temps.get(awayTeamNumber)+ ";");
+                   fixtures[roundNum][matchNumber] = (temps.get(homeTeamNum)) + " vs " + (temps.get(awayTeamNumber)+ ";");
 
                   }
 
@@ -85,8 +85,8 @@ public class FixtureGenerating {
         for (roundNum = 0; roundNum < fixtures.length; roundNum++) {
             if (roundNum % 2 == 1) {
                 fixtureAsText = fixtures[roundNum][0];
-                elementsOfFixture = fixtureAsText.split(" v ");
-                fixtures[roundNum][0] = elementsOfFixture[1] + " v " + elementsOfFixture[0];
+                elementsOfFixture = fixtureAsText.split(" vs ");
+                fixtures[roundNum][0] = elementsOfFixture[1] + " vs " + elementsOfFixture[0];
             }
         }
         setFixturesArray(fixtures);
@@ -215,6 +215,7 @@ public class FixtureGenerating {
             dates.add(lines);
 
         }
+        String format = "%-70s%-30s";
         int count=0;
         int teamCount = 0;
         ArrayList<String> list = new ArrayList<>();
@@ -225,7 +226,7 @@ public class FixtureGenerating {
             else if(teamCount == matchesPerRound){
                 count =0;
             }
-            list.add(line + " " + dates.get(count));
+            list.add(String.format(format,line,dates.get(count)));
             count++;
             teamCount++;
         }
