@@ -2,6 +2,7 @@ package com.company;
 
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,8 @@ public class ResultsTable {
         JLabel numOfMatchesEach;
         JLabel numOfTeams;
         JLabel totalNumOfMatches;
-
+        FileManipulation fm = new FileManipulation();
+        int numberofTeams = 0;
 
 
 
@@ -33,13 +35,13 @@ public class ResultsTable {
             final JPanel panel = new JPanel();
             JPanel panel1 = new JPanel();
             Box box = Box.createVerticalBox();
-            FileManipulation fm = new FileManipulation();
+             numberofTeams = fm.NumberOfTeams();
             String col[] = {"Pos","Team","P", "W", "L", "D", "MP", "GF", "GA", "GD"};
             Object[][] rows = new Object[0][];
             DefaultTableModel tableModel = new DefaultTableModel(col, 0);
             panel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
             panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            int numberofTeams = fm.NumberOfTeams();
+
             /*********************************************************************************************************/ //Adding components to the panel
 
             seasonInfo = new JLabel("Season Information");
@@ -107,6 +109,7 @@ public class ResultsTable {
                 tableModel.addRow(data);
 
             }
+            ColorResultsTable();
 
 
             /********************************************************************************************************/ //Overriding button for results table
@@ -119,6 +122,55 @@ public class ResultsTable {
 
 
             }
+
+    private void ColorResultsTable() {
+
+        resultsTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+
+
+            public Component getTableCellRendererComponent(JTable table,
+                                                           Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+
+                Component b = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                //String status = (String) table.getModel().getValueAt(row, col);
+//                String number = (String)value;
+//                int val = Integer.parseInt(number);
+
+                if (row < 5 && col == 0) {
+                    b.setBackground(Color.blue);
+                    //b.setFont(new Font("Dialog", Font.BOLD, 14));
+                }
+                else if(row == 5 && col == 0){
+                    b.setBackground(Color.orange);
+                }
+                else if(row == (numberofTeams - 3) && col == 0){
+                    b.setBackground(Color.RED);
+                }
+                else if(row == (numberofTeams - 2) && col == 0){
+                    b.setBackground(Color.RED);
+                }
+                else if(row == (numberofTeams - 1) && col == 0){
+                    b.setBackground(Color.RED);
+                }
+                else {
+                    b.setBackground(Color.white);
+                   // b.setFont(new Font("Dialog", Font.BOLD, 14));
+                }
+
+
+
+
+
+
+                return this;
+
+
+            }
+
+
+
+        });
     }
+}
 
 

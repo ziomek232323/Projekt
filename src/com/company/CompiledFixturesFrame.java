@@ -29,7 +29,7 @@ public class CompiledFixturesFrame {
     public void createAndShowCompiledFixturesFrame() throws IOException {
         JFrame frame = new JFrame("Compiled Schedule");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1100, 800);
+        frame.setSize(1500, 800);
         frame.setResizable(false);
         initComponents(frame);
         frame.setVisible(true);
@@ -54,8 +54,8 @@ public class CompiledFixturesFrame {
         secondHalfSeason = new JTable(secondHalfSeasonFixtures,columns);
         firstHalfSeason.setFillsViewportHeight(true);
         secondHalfSeason.setFillsViewportHeight(true);
-        secondHalfSeason.setPreferredScrollableViewportSize(new Dimension(500, 600));
-        firstHalfSeason.setPreferredScrollableViewportSize(new Dimension(500, 600));
+        secondHalfSeason.setPreferredScrollableViewportSize(new Dimension(700, 600));
+        firstHalfSeason.setPreferredScrollableViewportSize(new Dimension(700, 600));
         JScrollPane scrollPane1 = new JScrollPane(firstHalfSeason);
         scrollPane1.setBorder(BorderFactory.createTitledBorder("First Half of Season"));
         JScrollPane scrollPane12 = new JScrollPane(secondHalfSeason);
