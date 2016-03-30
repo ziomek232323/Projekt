@@ -15,7 +15,11 @@ public class FileManipulation {
     private ArrayList<String> derbyFixtures;
 
     public void readDatesFile() throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader("./src/dates.txt"));
+        File file = new File("./src/dates.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         ArrayList<String> list = new ArrayList<>();
         while ((line = br.readLine()) != null) {
@@ -37,7 +41,11 @@ public class FileManipulation {
     }
 
     public int NumberOfTeams() throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
+        File file = new File("./src/testing.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         int count=0;
         while ((line = br.readLine()) != null) {
@@ -47,7 +55,11 @@ public class FileManipulation {
         return count;
     }
     public int NumberOfSlotsAvailable() throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader("./src/dates.txt"));
+        File file = new File("./src/dates.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         int count=0;
         while ((line = br.readLine()) != null) {
@@ -72,11 +84,16 @@ public class FileManipulation {
     }
 
     public ArrayList<String> getDerbyMatches(){
+
         return this.derbyFixtures;
     }
 
-    public void setDerbyMatches()throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader("./src/derby.txt"));
+    public void setDerbyMatches(String filePaths)throws IOException{
+        File file = new File(filePaths);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         ArrayList<String> derbyList = new ArrayList<>();
         while ((line = br.readLine()) != null) {

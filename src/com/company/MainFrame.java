@@ -100,7 +100,7 @@ public class MainFrame {
                     statusLabel.setText(file.getPath());
                     filePath = statusLabel.getText();
                     setFilePath(filePath);
-                    System.out.println(filePath);
+                    //System.out.println(filePath);
                     try {
                         displayList();
                     } catch (IOException e) {
@@ -196,12 +196,15 @@ public class MainFrame {
 
     public void DisplaySchedule() throws IOException {
         String[][] lists;
-        displayFixtureArea.setText(null);
 
+        displayFixtureArea.setText(null);
         FixtureGenerating fg = new FixtureGenerating();
         fg.GenerateFixture(filePath);
         fg.Convert2dTOArrayList();
+
+
         lists = fg.getFixture();
+
 
 
         int numberOfTeams = getNumberOfTeamsInList();
@@ -216,6 +219,7 @@ public class MainFrame {
                 displayFixtureArea.append("\n");
             }
         }
+
     }
     public void DisplayScheduleWithDates(ArrayList list, int matchesPerRound)throws IOException{
         JFrame secondFrame = new JFrame("Sports Scheduler");
@@ -256,11 +260,11 @@ public class MainFrame {
     }
 
     public void setFilePath(String fp){
-        System.out.println("fp = " + fp);
+       // System.out.println("fp = " + fp);
         filePath=fp;
         FixtureGenerating fg = new FixtureGenerating();
         fg.setFilePath(filePath);
-        System.out.println("setFilePath = " +filePath);
+       // System.out.println("setFilePath = " +filePath);
     }
 
 

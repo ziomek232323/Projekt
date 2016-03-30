@@ -16,7 +16,7 @@ public class ManualDateAssignFrame {
     int matchesPerRound;
     FileManipulation fm = new FileManipulation();
     public JTextArea derbyList;
-    private String derbyFilePath ="";
+    protected String derbyFilePath ="";
     boolean isPressed = false;
     boolean isSaved = false;
 
@@ -338,7 +338,7 @@ public class ManualDateAssignFrame {
     public void HighlightDerbyMatches(boolean isPressed) throws IOException {
         FileManipulation fm = new FileManipulation();
         try {
-            fm.setDerbyMatches();
+            fm.setDerbyMatches(derbyFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

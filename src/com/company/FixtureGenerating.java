@@ -1,6 +1,7 @@
 package com.company;
 
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,9 @@ public class FixtureGenerating {
     public void GenerateFixture(String filePath) throws IOException{
 
 
+
         BufferedReader br = new BufferedReader(new FileReader(filePath));
+
         String line;
         int count = 0;
         List<String> temps = new ArrayList<>();
@@ -101,18 +104,61 @@ public class FixtureGenerating {
         for (String[] array : fixtures) {
             list.addAll(Arrays.asList(array));
         }
+
+
         int num = list.size();
 
 
-        Writer out = new BufferedWriter(new FileWriter("./src/list.txt"));
-         for (int i =0; i <list.size();i++){
-
-             out.append(list.get(i) + "\n");
-           }
 
 
-        out.close();
 
+
+
+
+        File files = new File("./src/list.txt");
+        if (!files.exists()) {
+
+            files.createNewFile();
+        }
+        System.out.println("got here");
+
+        FileWriter fw = new FileWriter("./src/list.txt");
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (int i =0; i <list.size();i++){
+
+            bw.append(list.get(i) + "\n");
+        }
+        //bw.write(content);
+        bw.close();
+
+
+
+
+
+       // JOptionPane.showMessageDialog(null, "Building Schedule");
+
+
+
+
+
+
+//        File file = new File("./src/list.txt");
+//        if (!file.exists()) {
+//            file.createNewFile();
+//        }
+//        Writer out = new BufferedWriter(new FileWriter(file));
+//
+//
+//        for (int i =0; i <list.size();i++){
+//
+//             out.append(list.get(i) + "\n");
+//           }
+//
+//
+//
+//
+//
+//        out.close();
 
         SetList(list);
         datesRequired = num;
