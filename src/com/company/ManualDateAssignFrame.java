@@ -61,10 +61,8 @@ public class ManualDateAssignFrame {
         matchesPerRound = fm.NumberOfTeams()/2;
         int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
 
-        /***************************************************************************/
-
+        //Populating the DateFrame
         Object[][] fixturess = new Object[sizeOfFixturess][2];
-
 
         int roundCount = 1;
         int x = 0;
@@ -76,9 +74,6 @@ public class ManualDateAssignFrame {
 
 
                 fixturess[z][0] = matches.get(x);
-                //System.out.println(matches.get(x));
-
-
 
                 x++;
                 z++;
@@ -94,11 +89,6 @@ public class ManualDateAssignFrame {
 
         }
 
-
-
-
-
-/***********************************************************************************/
         String[] columns = {"Fixtures", "Slots"};
 
 
@@ -165,6 +155,8 @@ public class ManualDateAssignFrame {
                 try {
                     isPressed = true;
                     HighlightDerbyMatches(isPressed);
+                    saveData(table);
+                    saveMatches(table);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -264,20 +256,12 @@ public class ManualDateAssignFrame {
         int reusableSlotsinINTS = 0;
         int itterator = 0;
         int Counter = listOfSlots.size();
-
-
-
-
-
-
         int roundCount = 1;
         int x = 0;
         int z = 0;
         int p = 0;
+
         fixtureList[0][1] = ("Round " + (roundCount) + "\n\n");
-       // System.out.println("number of fixtures - count " + (numberOfFixtures - counter));
-       // System.out.println(" counter " + Counter);
-       // System.out.println(" itterator " + itterator);
         for(int i = 0 ; i < numberOfFixtures - counter;i++) {//round count
             z++;
 
@@ -292,14 +276,8 @@ public class ManualDateAssignFrame {
 
 
             for (int r = 0; r < matchesPerRound; r++) {//matches per round
-               // System.out.println(" matches per round " + matchesPerRound);
-
-                   // p = itterator;
-
-
                 if (reusableSlotsinINTS == x) {
 
-                    //p = p + 1;
                     itterator += 1;
                     x = 0 ;
 
@@ -314,7 +292,6 @@ public class ManualDateAssignFrame {
                 }
 
                 fixtureList[z][1] = reusableSlots;
-
 
                 z++;
                 x++;
@@ -464,15 +441,8 @@ public class ManualDateAssignFrame {
 
                     }
 
-
-
                     return this;
-
-
                 }
-
-
-
             });
 
             table.repaint();
@@ -518,8 +488,8 @@ public class ManualDateAssignFrame {
         for (int i = 0; i < tModel.getRowCount(); i++) {
 
 
-                Object cellValue = tModel.getValueAt(i, 0);
-                fileContent = cellValue.toString();
+            Object cellValue = tModel.getValueAt(i, 0);
+            fileContent = cellValue.toString();
 
 
             fileWriter.write(fileContent);

@@ -26,9 +26,6 @@ public class DateEditFrame {
                     e.printStackTrace();
                 }
 
-
-
-
                 JPanel panel = new JPanel();
                 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
                 panel.setOpaque(true);
@@ -53,34 +50,10 @@ public class DateEditFrame {
                 JButton editDateManuallyButton = new JButton("Assign Dates");
                 JButton addDateFromComboBox = new JButton("Add");
                 final JFileChooser fileDialog1 = new JFileChooser("C:");
-
-                JComboBox cb = new JComboBox();
-                /*
-                String str_date = StartDateSelection();
-                String end_date = EndDateSelection();
-                Date startDate = null;
-                Date endDate = null;
-                DateFormat formatter ;
-                formatter = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    startDate = formatter.parse(str_date);
-                    endDate =  formatter.parse(end_date);
-                }catch(Exception e) {
-
-                }
-                try {
-                    cb.setModel(new DefaultComboBoxModel<>(dt.setDate(startDate,endDate).toArray()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                */
                 panel.add(scroller);
-                //panel.add(cb);
                 inputpanel.add(input);
                 inputpanel.add(insertButton);
                 inputpanel.add(browseButton);
-                //inputpanel.add(addDateFromComboBox);
                 inputpanel.add(applyDates);
                 inputpanel.add(editDateManuallyButton);
                 panel.add(inputpanel);
@@ -118,15 +91,6 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         String tempPath = dt.GetDateFilePath();
-                        /*
-
-                        try {
-                            dt.AddSelectedDateToFile(tempPath, listOfDates, cb);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        */
-
                     }
                 });
 
@@ -134,9 +98,6 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         String tempPath = dt.GetDateFilePath();
-
-                            //fg.PopulateListWithDates(tempPath);
-                           // fg.Convert2dTOArrayList();
                         try {
                             frame.dispose();
                             fg.AssignSlots();
@@ -152,12 +113,9 @@ public class DateEditFrame {
                     @Override
                     public void actionPerformed(ActionEvent r) {
                         ManualDateAssignFrame mdaf = new ManualDateAssignFrame();
-                        //String tempPath = dt.GetDateFilePath();
-                        DynamicDateAssignment dda = new DynamicDateAssignment();
                         frame.dispose();
                         try {
                             mdaf.createAndShowUI();
-                           // dda.createAndShowUI();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -187,19 +145,5 @@ public class DateEditFrame {
             }
         });
     }
-
-    public String StartDateSelection (){
-        String str_date = JOptionPane.showInputDialog("Enter start date in format (dd/MM/yyyy): ");
-
-        return str_date;
-
-    }
-    public String EndDateSelection(){
-        String end_date = JOptionPane.showInputDialog("Enter end date in format (dd/MM/yyyy): ");
-
-        return end_date;
-    }
-
-
 
 }

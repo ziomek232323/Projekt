@@ -1,6 +1,6 @@
 package com.company;
 
-abstract class SportsClub {
+abstract class LeagueParam {
     int position;
     String name;
     int points;

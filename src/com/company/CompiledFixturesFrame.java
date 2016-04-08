@@ -25,11 +25,11 @@ public class CompiledFixturesFrame {
     protected Object[][] firstHalfSeasonFixtures;
     protected Object[][] secondHalfSeasonFixtures;
 
-
+//Initiate Frame components
     public void createAndShowCompiledFixturesFrame() throws IOException {
         JFrame frame = new JFrame("Compiled Schedule");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1500, 800);
+        frame.setSize(1300, 730);
         frame.setResizable(false);
         initComponents(frame);
         frame.setVisible(true);
@@ -54,13 +54,12 @@ public class CompiledFixturesFrame {
         secondHalfSeason = new JTable(secondHalfSeasonFixtures,columns);
         firstHalfSeason.setFillsViewportHeight(true);
         secondHalfSeason.setFillsViewportHeight(true);
-        secondHalfSeason.setPreferredScrollableViewportSize(new Dimension(700, 600));
-        firstHalfSeason.setPreferredScrollableViewportSize(new Dimension(700, 600));
+        secondHalfSeason.setPreferredScrollableViewportSize(new Dimension(600, 600));
+        firstHalfSeason.setPreferredScrollableViewportSize(new Dimension(600, 600));
         JScrollPane scrollPane1 = new JScrollPane(firstHalfSeason);
         scrollPane1.setBorder(BorderFactory.createTitledBorder("First Half of Season"));
         JScrollPane scrollPane12 = new JScrollPane(secondHalfSeason);
         scrollPane12.setBorder(BorderFactory.createTitledBorder("Second Half of Season"));
-        //firstHalfSeason.getColumnModel().getColumn(1).setCellEditor(new DefaultCellEditor(cb));
 
         panel.add(scrollPane1);
         panel1.add(scrollPane12);
@@ -70,8 +69,8 @@ public class CompiledFixturesFrame {
 
         ColorTables();
 
-
-          resultsTable.addActionListener(new ActionListener() {
+    //Action Listener for Show table button
+        resultsTable.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent r) {
                 ResultsTable rt = new ResultsTable();
@@ -85,10 +84,6 @@ public class CompiledFixturesFrame {
             }
         });
 
-
-
-
-
     }
 
     private void SecondHalfSeasonSlotCorrection() throws IOException {
@@ -97,14 +92,6 @@ public class CompiledFixturesFrame {
         int matchesPerRound = fm.NumberOfTeams()/2;
         int count = secondHalfSlots.size();
         int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
-
-//        int y =0;
-//        for(int j=secondHalfSlots.size() -1;j>=0;j--){
-//            System.out.println(secondHalfSlots.get(j));
-//            secondHalfSeasonFixtures[y][1] = secondHalfSlots.get(j);
-//            y++;
-//        }
-
         int roundCounts = 1;
         int s = secondHalfSlots.size()-1;
         int c = 0;
@@ -114,11 +101,7 @@ public class CompiledFixturesFrame {
             c++;
             for (int r = matchesPerRound - 1; r >= 0 ; r--) {//matches per round
 
-
                 secondHalfSeasonFixtures[c][1] = secondHalfSlots.get(s);
-                //System.out.println(matches.get(x));
-
-
 
                 s--;
                 c++;
@@ -137,17 +120,16 @@ public class CompiledFixturesFrame {
         firstHalfMatches = fm.readMatchData();
         firstHalfSeasonFixtures = new Object[firstHalfMatches.size()][2];
 
-        for (int i = 0; i < firstHalfMatches.size(); i++) {
+        for (int i = 0; i < firstHalfMatches.size(); i++)
+        {
             firstHalfSeasonFixtures[i][0] = firstHalfMatches.get(i);
-
-
         }
 
         firstHalfSlots = fm.readSlotData();
 
-        for (int i = 0; i < firstHalfSlots.size(); i++) {
+        for (int i = 0; i < firstHalfSlots.size(); i++)
+        {
             firstHalfSeasonFixtures[i][1] = firstHalfSlots.get(i);
-
         }
     }
 
@@ -166,21 +148,12 @@ public class CompiledFixturesFrame {
                     c.setFont(new Font("Dialog", Font.BOLD, 14));
                 }
                 else {
-                    c.setBackground(Color.green);
+                    c.setBackground(Color.RED);
                     c.setFont(new Font("Dialog", Font.BOLD, 14));
                 }
-
-
-
-
-
                 return this;
 
-
             }
-
-
-
         });
 
 
@@ -198,20 +171,11 @@ public class CompiledFixturesFrame {
                     b.setFont(new Font("Dialog", Font.BOLD, 14));
                 }
                 else {
-                    b.setBackground(Color.orange);
+                    b.setBackground(Color.cyan);
                     b.setFont(new Font("Dialog", Font.BOLD, 14));
                 }
-
-
-
-
-
                 return this;
-
-
             }
-
-
 
         });
     }
@@ -219,16 +183,11 @@ public class CompiledFixturesFrame {
     public void SecondHalfSeasonMatchCorrection() throws IOException {
         secondHalfMatches = fm.readMatchDataforSecondSeason();
         int matchesPerRound = fm.NumberOfTeams()/2;
+        System.out.println("Matches per round: " + matchesPerRound);
         int count = secondHalfMatches.size();
+                System.out.println("count : " + count);
         int sizeOfFixturess = (count + ((matchesPerRound*2)-1));
-
-
-//        int x =0;
-//        for(int j=secondHalfMatches.size() -1;j>=0;j--){
-//            System.out.println(secondHalfMatches.get(j));
-//            secondHalfSeasonFixtures[x][0] = secondHalfMatches.get(j);
-//            x++;
-//        }
+        System.out.println("Size of Fixtures: " + sizeOfFixturess);
 
         int roundCount = 1;
         int x = secondHalfMatches.size()-1;
@@ -239,12 +198,7 @@ public class CompiledFixturesFrame {
             z++;
             for (int r = matchesPerRound - 1; r >= 0 ; r--) {//matches per round
 
-
                 secondHalfSeasonFixtures[z][0] = secondHalfMatches.get(x);
-                //System.out.println(matches.get(x));
-
-
-
                 x--;
                 z++;
             }
@@ -256,8 +210,6 @@ public class CompiledFixturesFrame {
 
 
         }
-
-
 
     }
 }

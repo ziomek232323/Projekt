@@ -116,8 +116,6 @@ public class MainFrame {
 
             @Override
             public void actionPerformed(ActionEvent z) {
-
-
                 try {
                     DisplaySchedule();
 
@@ -232,7 +230,7 @@ public class MainFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       JPanel displayTeamListPanelDates = new JPanel();
+        JPanel displayTeamListPanelDates = new JPanel();
         displayTeamListPanelDates.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
@@ -249,22 +247,21 @@ public class MainFrame {
             displayScheduleWithDates.append(String.valueOf(list.get(i)));
             displayScheduleWithDates.append("\n");
             if(i !=0){
-            if(i % (matchesPerRound) == 0){
-                displayScheduleWithDates.append("\n\n");
-                displayScheduleWithDates.append("Round "+(roundCount+1) + "\n\n");
-                roundCount++;
-            }}
+                if(i % (matchesPerRound) == 0){
+                    displayScheduleWithDates.append("\n\n");
+                    displayScheduleWithDates.append("Round "+(roundCount+1) + "\n\n");
+                    roundCount++;
+                }}
 
 
         }
     }
 
     public void setFilePath(String fp){
-       // System.out.println("fp = " + fp);
         filePath=fp;
         FixtureGenerating fg = new FixtureGenerating();
         fg.setFilePath(filePath);
-       // System.out.println("setFilePath = " +filePath);
+
     }
 
 

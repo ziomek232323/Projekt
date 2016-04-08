@@ -59,16 +59,15 @@ public class FixtureGenerating {
                     awayTeamNumber = numberOfTeams - 1;
 
                 fixtures[roundNum][matchNumber] = (homeTeamNum + 1) + " vs " + (awayTeamNumber + 1);
-                 for (int index = 0; index < count; index++) {
+                for (int index = 0; index < count; index++) {
 
-                   fixtures[roundNum][matchNumber] = (temps.get(homeTeamNum)) + " vs " + (temps.get(awayTeamNumber)+ ";");
+                    fixtures[roundNum][matchNumber] = (temps.get(homeTeamNum)) + " vs " + (temps.get(awayTeamNumber)+ ";");
 
-                  }
+                }
 
 
             }
         }
-
 
         //Berger Table fix
         revisedFixtures = new String[numberOfRounds][matchesPerRound];
@@ -107,14 +106,6 @@ public class FixtureGenerating {
 
 
         int num = list.size();
-
-
-
-
-
-
-
-
         File files = new File("./src/list.txt");
         if (!files.exists()) {
 
@@ -128,37 +119,7 @@ public class FixtureGenerating {
 
             bw.append(list.get(i) + "\n");
         }
-        //bw.write(content);
         bw.close();
-
-
-
-
-
-       // JOptionPane.showMessageDialog(null, "Building Schedule");
-
-
-
-
-
-
-//        File file = new File("./src/list.txt");
-//        if (!file.exists()) {
-//            file.createNewFile();
-//        }
-//        Writer out = new BufferedWriter(new FileWriter(file));
-//
-//
-//        for (int i =0; i <list.size();i++){
-//
-//             out.append(list.get(i) + "\n");
-//           }
-//
-//
-//
-//
-//
-//        out.close();
 
         SetList(list);
         datesRequired = num;
@@ -167,7 +128,7 @@ public class FixtureGenerating {
     }
 
     public void SetList(List list){
-       this.lists = list;
+        this.lists = list;
     }
 
     public List GetList(){
@@ -178,32 +139,18 @@ public class FixtureGenerating {
         this.fixtures = list;
     }
 
-
-    public void PopulateListWithDates(String filePath) throws IOException {
-        fm.readDatesFile();
-
-
-        List<String> dateList = new ArrayList<>();
-        dateList = fm.getDatesList();
-
-
-    }
-
     public void AssignSlots() throws IOException {
         FileManipulation fm = new FileManipulation();
         int slotsAvailable = 0;
         int matchesPerRound = 0;
         try {
-             matchesPerRound = (fm.NumberOfTeams())/2;
-             slotsAvailable = fm.NumberOfSlotsAvailable();
+            matchesPerRound = (fm.NumberOfTeams())/2;
+            slotsAvailable = fm.NumberOfSlotsAvailable();
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("Number of matches per round: " + matchesPerRound );
         System.out.println("Number of slots available: " + slotsAvailable );
-
-
-
 
         //read list file
         BufferedReader br = new BufferedReader(new FileReader("./src/list.txt"));
@@ -233,26 +180,9 @@ public class FixtureGenerating {
         br.close();
         Writer out = new BufferedWriter(new FileWriter("./src/list.txt"));
         out.append(null);
-
-        for(int i = 0; i < list.size(); i++){
-            //System.out.println(list.get(i));
-        }
         MainFrame mf = new MainFrame();
         mf.DisplayScheduleWithDates(list, matchesPerRound);
 
     }
 
-
-
-
-
-
-
-
 }
-
-
-
-
-
-

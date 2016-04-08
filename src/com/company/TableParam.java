@@ -1,13 +1,9 @@
 package com.company;
 
-import java.util.ArrayList;
 
+public class TableParam extends LeagueParam{
 
-
-public class FootballClub extends SportsClub {
-
-
-    FootballClub(int position, String name, int points, int wins, int defeats, int draws, int totalMatches, int goalF, int goalA, int goalD) {
+    TableParam(int position, String name, int points, int wins, int defeats, int draws, int totalMatches, int goalF, int goalA, int goalD) {
         this.position = position;
         this.name = name;
         this.points = points;

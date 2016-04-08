@@ -29,7 +29,7 @@ public class FileManipulation {
         dates = list;
     }
 
-    public void readTeamListFile() throws IOException{
+    public ArrayList<String> readTeamListFile() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("./src/testing.txt"));
         String line;
         ArrayList<String> list = new ArrayList<>();
@@ -38,6 +38,7 @@ public class FileManipulation {
         }
         br.close();
         teams = list;
+        return list;
     }
 
     public int NumberOfTeams() throws IOException{
@@ -49,7 +50,7 @@ public class FileManipulation {
         String line;
         int count=0;
         while ((line = br.readLine()) != null) {
-           count++;
+            count++;
         }
         br.close();
         return count;
